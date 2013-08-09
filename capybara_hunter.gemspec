@@ -6,8 +6,8 @@ require 'capybara_hunter/version'
 Gem::Specification.new do |spec|
   spec.name          = "capybara_hunter"
   spec.version       = CapybaraHunter::VERSION
-  spec.authors       = ["Michael Dupuis Jr."]
-  spec.email         = ["michael.dupuis@dockyard.com"]
+  spec.authors       = ["Michael Dupuis Jr.", 'Dan McClain']
+  spec.email         = ["michael.dupuis@dockyard.com", 'rubygems@danmcclain.net']
   spec.description   = %q{Additional finders for Capybara.}
   spec.summary       = %q{Additional finders for Capybara.}
   spec.homepage      = ""
@@ -17,6 +17,11 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.3"
-  spec.add_development_dependency "rake"
+  spec.add_development_dependency 'bundler', '~> 1.3'
+  spec.add_development_dependency 'byebug'
+  spec.add_development_dependency 'capybara', '~> 2.1.0'
+  spec.add_development_dependency 'capybara_minitest_spec'
+  spec.add_development_dependency 'm'
+  spec.add_development_dependency 'minitest'
+  spec.add_development_dependency 'rake'
 end
