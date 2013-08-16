@@ -7,35 +7,24 @@ module Capybara::Node::Finders
       find('table', text: obj)
     elsif Hash === obj
       locator = build_locator_from_hash(obj.merge({locator: 'table'}))
-
-      if obj.key? :content
+      if obj.key?(:content)
         find(locator, text: obj[:content])
       else
         find(locator)
       end
     else
-      hash = {}
-      hash[:classes] = [obj.table_name]
-      hash[:id] = "#{obj.table_name}_#{obj.id}"
-
+      hash = { id: "#{obj.class.to_s.downcase}_#{obj.id}", class: obj.class.to_s.downcase }
       locator = build_locator_from_hash hash
-
       find(locator)
     end
   end
 
-  # private
+  private
 
   def build_locator_from_hash(hash)
     locator = hash[:locator]
-    if obj.key? :id
-      locator = "#{locator}##{hash[:id]}"
-    end
-
-    if obj.key? :classes
-      locator = "#{locator}.#{hash[:classes].join('.')}"
-    end
-
+    locator = "#{locator}##{hash[:id]}" if hash.key? :id
+    locator = "#{locator}.#{hash[:class]}" if hash.key? :class
     locator
   end
 
