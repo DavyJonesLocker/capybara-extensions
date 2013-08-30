@@ -5,7 +5,7 @@ module Capybara::Node::Finders
   ELEMENTS = { table: 'table', row: 'tr' }
 
   ELEMENTS.each do |name, html|
-    define_method("#{name}") do |obj|
+    define_method("find_#{name}") do |obj|
       if String === obj
         locator = [html, { text: obj }]
       elsif Hash === obj
@@ -19,6 +19,7 @@ module Capybara::Node::Finders
         hash = { id: "#{obj.class.to_s.downcase}_#{obj.id}", class: obj.class.to_s.downcase }
         locator = build_locator_from_hash hash
       end
+      find(*locator)
     end
   end
 
