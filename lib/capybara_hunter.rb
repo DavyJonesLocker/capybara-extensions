@@ -19,6 +19,20 @@ module Capybara::Node::Finders
     end
   end
 
+  def row(obj)
+    if String === obj
+      find('tr', text: obj)
+    elsif Hash === obj
+      locator = build_locator_from_hash(obj.merge({locator: 'tr'}))
+      if obj.key?(:content)
+        find(locator, text: obj[:content])
+      else
+        #find(locator)
+        locator
+      end
+    end
+  end
+
   private
 
   def build_locator_from_hash(hash)

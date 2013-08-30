@@ -116,6 +116,31 @@ describe '.string' do
     string.find('h1').text.must_equal 'Totally awesome'
   end
 
+  describe '#row' do
+    it 'finds the row of dogs when passed a string' do
+      string.row('Peas').text.must_have_content 'Peas'
+      string.row('Peas').text.wont_have_content 'Dogs'
+    end
+
+    describe 'passing a hash' do
+      it 'finds the table of animals when passed a single class via hash' do
+        string.first(string.row({ class: 'animal' })).text.must_have_content 'Dogs'
+        #string.row({ class: 'animal' }).text.wont_have_content 'Peas'
+      end
+
+      it 'finds the table of root vegetable when passed a multiple classes via hash' do
+        string.row({ class: 'vegetables.root' }).text.must_have_content 'Carrots'
+        string.row({ class: 'vegetables.root' }).text.wont_have_content 'Dogs'
+        string.row({ class: 'vegetables.root' }).text.wont_have_content 'Peas'
+      end
+
+       it 'finds the table of root vegetable when passed a single id via hash' do
+         string.row({ id: 'root-vegetables' }).text.must_have_content 'Carrots'
+         string.row({ id: 'root-vegetables' }).text.wont_have_content 'Dogs'
+       end
+    end
+  end
+
   describe '#table' do
     it 'finds the table of vegetable types when passed a string that appears within the table' do
       string.table('Peas').text.must_have_content 'Peas'
