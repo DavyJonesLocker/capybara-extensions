@@ -2,36 +2,23 @@ require 'capybara_hunter/version'
 require 'test_helper'
 
 module Capybara::Node::Finders
-  def table(obj)
-    if String === obj
-      find('table', text: obj)
-    elsif Hash === obj
-      locator = build_locator_from_hash(obj.merge({locator: 'table'}))
-      if obj.key?(:content)
-        find(locator, text: obj[:content])
-      else
-        find(locator)
-      end
-    else
-      hash = { id: "#{obj.class.to_s.downcase}_#{obj.id}", class: obj.class.to_s.downcase }
-      locator = build_locator_from_hash hash
-      find(locator)
-    end
-  end
+  ELEMENTS = { table: 'table', row: 'tr' }
 
-  def row(obj)
-    if String === obj
-      locator = ['tr', { text: obj }]
-    elsif Hash === obj
-      hash = obj.merge({ locator: 'tr' })
-      locator = build_locator_from_hash hash
-      if obj.key?(:content)
-        locator = [locator, { text: obj[:content] }]
+  ELEMENTS.each do |name, html|
+    define_method("#{name}") do |obj|
+      if String === obj
+        locator = [html, { text: obj }]
+      elsif Hash === obj
+        hash = obj.merge({ locator: html })
+        locator = build_locator_from_hash hash
+        if obj.key?(:content)
+          locator = [locator, { text: obj[:content] }]
+        end
+        locator
+      else
+        hash = { id: "#{obj.class.to_s.downcase}_#{obj.id}", class: obj.class.to_s.downcase }
+        locator = build_locator_from_hash hash
       end
-      locator
-    else
-      hash = { id: "#{obj.class.to_s.downcase}_#{obj.id}", class: obj.class.to_s.downcase }
-      locator = build_locator_from_hash hash
     end
   end
 
@@ -43,7 +30,4 @@ module Capybara::Node::Finders
     locator = "#{locator}.#{hash[:class]}" if hash.key? :class
     locator
   end
-
-  # find row
-  # find cell
 end

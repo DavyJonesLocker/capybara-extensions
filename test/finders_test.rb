@@ -12,6 +12,7 @@ describe '.string' do
   describe '#row' do
     it 'finds the row of peas when passed a string' do
       string.first(*string.row('Peas')).text.must_have_content 'Peas'
+      string.first(*string.row('Peas')).text.wont_have_content 'Dogs'
     end
 
     describe 'passing a hash' do
@@ -47,32 +48,32 @@ describe '.string' do
 
   describe '#table' do
     it 'finds the table of vegetable types when passed a string that appears within the table' do
-      string.table('Peas').text.must_have_content 'Peas'
-      string.table('Peas').text.wont_have_content 'Dogs'
+      string.find(*string.table('Peas')).text.must_have_content 'Peas'
+      string.find(*string.table('Peas')).text.wont_have_content 'Dogs'
     end
 
     describe 'passing a hash' do
       it 'finds the table of animals when passed a single class via hash' do
-        string.table({ class: 'animals' }).text.must_have_content 'Dogs'
-        string.table({ class: 'animals' }).text.wont_have_content 'Peas'
+        string.find(string.table({ class: 'animals' })).text.must_have_content 'Dogs'
+        string.find(string.table({ class: 'animals' })).text.wont_have_content 'Peas'
       end
 
       it 'finds the table of root vegetable when passed a multiple classes via hash' do
-        string.table({ class: 'vegetables.root' }).text.must_have_content 'Carrots'
-        string.table({ class: 'vegetables.root' }).text.wont_have_content 'Dogs'
-        string.table({ class: 'vegetables.root' }).text.wont_have_content 'Peas'
+        string.find(string.table({ class: 'vegetables.root' })).text.must_have_content 'Carrots'
+        string.find(string.table({ class: 'vegetables.root' })).text.wont_have_content 'Dogs'
+        string.find(string.table({ class: 'vegetables.root' })).text.wont_have_content 'Peas'
       end
 
        it 'finds the table of root vegetable when passed a single id via hash' do
-         string.table({ id: 'root-vegetables' }).text.must_have_content 'Carrots'
-         string.table({ id: 'root-vegetables' }).text.wont_have_content 'Dogs'
+         string.find(string.table({ id: 'root-vegetables' })).text.must_have_content 'Carrots'
+         string.find(string.table({ id: 'root-vegetables' })).text.wont_have_content 'Dogs'
        end
     end
 
     describe 'passing an instance' do
       it 'finds the table of animal categories when passed an instance' do
-        string.table(dog).text.must_have_content 'Dogs'
-        string.table(dog).text.wont_have_content 'Cats'
+        string.find(string.table(dog)).text.must_have_content 'Dogs'
+        string.find(string.table(dog)).text.wont_have_content 'Cats'
       end
     end
   end
