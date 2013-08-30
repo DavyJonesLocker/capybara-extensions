@@ -2,142 +2,46 @@ require 'test_helper'
 require 'capybara_hunter'
 
 describe '.string' do
-  let :string do
-    Capybara.string <<-STRING
-        <html>
-          <head>
-            <title>simple_node</title>
-          </head>
-          <body>
-            <div id="page">
-              <div id="content">
-                <h1 data="fantastic">Totally awesome</h1>
-                <p>Yes it is</p>
-              </div>
-
-              <form>
-                <input type="text" name="bleh" disabled="disabled"/>
-                <input type="text" name="meh"/>
-              </form>
-
-              <table class='table table-striped table-bordered animals'>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="animal" id="animal_1"><td>Dogs</td>
-                  <td>
-                    <a href="/animals/dogs/edit" class="btn btn-mini">Edit</a>
-                    <a href="/animals/dogs" class="btn btn-mini btn-danger" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
-                  </td>
-                  </tr>
-                  <tr class="animal" id="animal_2"><td>Cats</td>
-                  <td>
-                    <a href="/animals/cats/edit" class="btn btn-mini">Edit</a>
-                    <a href="/animals/cats" class="btn btn-mini btn-danger" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
-                  </td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <table class='table table-striped table-bordered vegetables'>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="vegetable" id="vegetable_1"><td>Peas</td>
-                  <td>
-                    <a href="/vegetables/peas/edit" class="btn btn-mini">Edit</a>
-                    <a href="/vegetables/peas" class="btn btn-mini btn-danger" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
-                  </td>
-                  </tr>
-                  <tr class="vegetable" id="vegetable_2"><td>Peppers</td>
-                  <td>
-                    <a href="/vegetables/peppers/edit" class="btn btn-mini">Edit</a>
-                    <a href="/vegetables/peppers" class="btn btn-mini btn-danger" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
-                  </td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <table id='root-vegetables' class='table table-striped table-bordered vegetables root'>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="vegetable" id="vegetable_1"><td>Carrots</td>
-                  <td>
-                    <a href="/vegetables/carrots/edit" class="btn btn-mini">Edit</a>
-                    <a href="/vegetables/carrots" class="btn btn-mini btn-danger" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
-                  </td>
-                  </tr>
-                  <tr class="vegetable" id="vegetable_2"><td>Potatoes</td>
-                  <td>
-                    <a href="/vegetables/potatoes/edit" class="btn btn-mini">Edit</a>
-                    <a href="/vegetables/potatoes" class="btn btn-mini btn-danger" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
-                  </td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <div id="footer">
-                <p>c2010</p>
-                <p>Jonas Nicklas</p>
-                <input type="text" name="foo" value="bar"/>
-                <select name="animal">
-                  <option>Monkey</option>
-                  <option selected="selected">Capybara</option>
-                </select>
-              </div>
-
-              <div id="hidden" style="display: none">
-                <p id="secret">Secret</p>
-              </div>
-
-              <section>
-                <div class="subsection"></div>
-              </section>
-            </div>
-          </body>
-        </html>
-    STRING
-  end
+  let(:dog) { Animal.new(1, 'animal') }
+  let(:string) { Capybara.string TestString }
 
   it 'verifies that find is working' do
     string.find('h1').text.must_equal 'Totally awesome'
   end
 
   describe '#row' do
-    it 'finds the row of dogs when passed a string' do
-      string.row('Peas').text.must_have_content 'Peas'
-      string.row('Peas').text.wont_have_content 'Dogs'
+    it 'finds the row of peas when passed a string' do
+      string.first(*string.row('Peas')).text.must_have_content 'Peas'
     end
 
     describe 'passing a hash' do
-      it 'finds the table of animals when passed a single class via hash' do
+      it 'finds the first animal row when passed a single class via hash' do
         string.first(string.row({ class: 'animal' })).text.must_have_content 'Dogs'
-        #string.row({ class: 'animal' }).text.wont_have_content 'Peas'
+        string.first(string.row({ class: 'animal' })).text.wont_have_content 'Peas'
       end
 
-      it 'finds the table of root vegetable when passed a multiple classes via hash' do
-        string.row({ class: 'vegetables.root' }).text.must_have_content 'Carrots'
-        string.row({ class: 'vegetables.root' }).text.wont_have_content 'Dogs'
-        string.row({ class: 'vegetables.root' }).text.wont_have_content 'Peas'
+      it 'finds the first root vegetable row when passed multiple classes via hash' do
+        string.first(string.row({ class: 'vegetable.root' })).text.must_have_content 'Carrots'
+        string.first(string.row({ class: 'vegetable.root' })).text.wont_have_content 'Dogs'
+        string.first(string.row({ class: 'vegetable.root' })).text.wont_have_content 'Peas'
       end
 
-       it 'finds the table of root vegetable when passed a single id via hash' do
-         string.row({ id: 'root-vegetables' }).text.must_have_content 'Carrots'
-         string.row({ id: 'root-vegetables' }).text.wont_have_content 'Dogs'
+       it 'finds the first root vegetable row when passed a single id via hash' do
+         string.first(string.row({ id: 'vegetable_1' })).text.must_have_content 'Peas'
+         string.first(string.row({ id: 'vegetable_1' })).text.wont_have_content 'Carrots'
        end
+
+       it 'finds the row with class vegetable and content peppers' do
+         string.find(*string.row({ class: 'vegetable', content: 'Peppers' })).text.must_have_content 'Peppers'
+         string.find(*string.row({ class: 'vegetable', content: 'Peppers' })).text.wont_have_content 'Peas'
+       end
+    end
+
+    describe 'passing an instance' do
+      it 'finds the dog row of when passed an instance' do
+        string.find(string.row(dog)).text.must_have_content 'Edit Dogs'
+        string.find(string.row(dog)).text.wont_have_content 'Cats'
+      end
     end
   end
 
@@ -166,10 +70,9 @@ describe '.string' do
     end
 
     describe 'passing an instance' do
-      let(:dog) { Animal.new(1, 'animal') }
-
       it 'finds the table of animal categories when passed an instance' do
         string.table(dog).text.must_have_content 'Dogs'
+        string.table(dog).text.wont_have_content 'Cats'
       end
     end
   end

@@ -21,15 +21,17 @@ module Capybara::Node::Finders
 
   def row(obj)
     if String === obj
-      find('tr', text: obj)
+      locator = ['tr', { text: obj }]
     elsif Hash === obj
-      locator = build_locator_from_hash(obj.merge({locator: 'tr'}))
+      hash = obj.merge({ locator: 'tr' })
+      locator = build_locator_from_hash hash
       if obj.key?(:content)
-        find(locator, text: obj[:content])
-      else
-        #find(locator)
-        locator
+        locator = [locator, { text: obj[:content] }]
       end
+      locator
+    else
+      hash = { id: "#{obj.class.to_s.downcase}_#{obj.id}", class: obj.class.to_s.downcase }
+      locator = build_locator_from_hash hash
     end
   end
 

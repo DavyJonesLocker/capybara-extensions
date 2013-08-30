@@ -3,6 +3,7 @@ require 'capybara'
 require 'capybara_minitest_spec'
 require 'minitest/autorun'
 require 'minitest/reporters'
+require 'string'
 
 MiniTest::Reporters.use!
 
