@@ -7,10 +7,12 @@ require 'string'
 
 MiniTest::Reporters.use!
 
-class Animal
-  attr_accessor :id, :name
-  def initialize(id, name)
+class Post
+  attr_accessor :id, :title, :body, :author
+  def initialize(id, title, body, author)
     @id = id
-    @name = name
+    @title = title
+    @body = body
+    @author = author
   end
 end

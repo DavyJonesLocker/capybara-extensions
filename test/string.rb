@@ -1,107 +1,61 @@
 TestString =  <<-STRING
-    <html>
-      <head>
-        <title>simple_node</title>
-      </head>
-      <body>
-        <div id="page">
-          <div id="content">
-            <h1 data="fantastic">Totally awesome</h1>
-            <p>Yes it is</p>
-          </div>
+  <h1>All posts</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Body</th>
+        <th colspan=3>Actions</th>
+      </tr>
+    </thead>
 
-          <form>
-            <input type="text" name="bleh" disabled="disabled"/>
-            <input type="text" name="meh"/>
-          </form>
+    <tbody>
+      <tr class="post" id="post_1">
+    <td>The first post title</td>
+    <td>Suspendisse id purus quis augue consequat varius ut eget diam. Donec ut lacus vestibulum, porttitor nulla porta, convallis ligula. Nunc sodales venenatis sapien sit amet consequat.</td>
+    <td><a href="/posts/1">Show</a></td>
+    <td><a href="/posts/1/edit">Edit</a></td>
+    <td><a data-confirm="Are you sure?" data-method="delete" href="/posts/1" rel="nofollow">Destroy</a></td>
+  </tr><tr class="post" id="post_2">
+    <td>The second post title</td>
+    <td>Donec iaculis ultricies orci id consequat. Etiam varius dignissim tincidunt. Sed in lacinia augue. Proin ullamcorper quam at tincidunt consectetur.</td>
+    <td><a href="/posts/2">Show</a></td>
+    <td><a href="/posts/2/edit">Edit</a></td>
+    <td><a data-confirm="Are you sure?" data-method="delete" href="/posts/2" rel="nofollow">Destroy</a></td>
+  </tr><tr class="post" id="post_3">
+    <td>The third post title</td>
+    <td>Adipiscing quam. Donec posuere condimentum dolor, mollis consectetur diam consectetur eu. Etiam ipsum augue, imperdiet ac porttitor tristique, hendrerit.</td>
+    <td><a href="/posts/3">Show</a></td>
+    <td><a href="/posts/3/edit">Edit</a></td>
+    <td><a data-confirm="Are you sure?" data-method="delete" href="/posts/3" rel="nofollow">Destroy</a></td>
+  </tr>
+    </tbody>
+  </table>
 
-          <table class='table table-striped table-bordered animals'>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="animal" id="animal_1"><td>Dogs</td>
-              <td>
-                <a href="/animals/dogs/edit" class="btn btn-mini">Edit Dogs</a>
-                <a href="/animals/dogs" class="btn btn-mini btn-danger" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
-              </td>
-              </tr>
-              <tr class="animal" id="animal_2"><td>Cats</td>
-              <td>
-                <a href="/animals/cats/edit" class="btn btn-mini">Edit</a>
-                <a href="/animals/cats" class="btn btn-mini btn-danger" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
-              </td>
-              </tr>
-            </tbody>
-          </table>
+  <h1>Posts by Jane</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Body</th>
+        <th colspan=3>Actions</th>
+      </tr>
+    </thead>
 
-          <table class='table table-striped table-bordered vegetables'>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="vegetable" id="vegetable_1"><td>Peas</td>
-              <td>
-                <a href="/vegetables/peas/edit" class="btn btn-mini">Edit Peas</a>
-                <a href="/vegetables/peas" class="btn btn-mini btn-danger" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
-              </td>
-              </tr>
-              <tr class="vegetable" id="vegetable_2"><td>Peppers</td>
-              <td>
-                <a href="/vegetables/peppers/edit" class="btn btn-mini">Edit</a>
-                <a href="/vegetables/peppers" class="btn btn-mini btn-danger" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
-              </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <table id='root-vegetables' class='table table-striped table-bordered vegetables root'>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="vegetable root" id="vegetable_1"><td>Carrots</td>
-              <td>
-                <a href="/vegetables/carrots/edit" class="btn btn-mini">Edit</a>
-                <a href="/vegetables/carrots" class="btn btn-mini btn-danger" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
-              </td>
-              </tr>
-              <tr class="vegetable root" id="vegetable_2"><td>Potatoes</td>
-              <td>
-                <a href="/vegetables/potatoes/edit" class="btn btn-mini">Edit</a>
-                <a href="/vegetables/potatoes" class="btn btn-mini btn-danger" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
-              </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div id="footer">
-            <p>c2010</p>
-            <p>Jonas Nicklas</p>
-            <input type="text" name="foo" value="bar"/>
-            <select name="animal">
-              <option>Monkey</option>
-              <option selected="selected">Capybara</option>
-            </select>
-          </div>
-
-          <div id="hidden" style="display: none">
-            <p id="secret">Secret</p>
-          </div>
-
-          <section>
-            <div class="subsection"></div>
-          </section>
-        </div>
-      </body>
-    </html>
+    <tbody>
+      <tr class="post" id="post_1">
+    <td>The first post title</td>
+    <td>Suspendisse id purus quis augue consequat varius ut eget diam. Donec ut lacus vestibulum, porttitor nulla porta, convallis ligula. Nunc sodales venenatis sapien sit amet consequat.</td>
+    <td><a href="/posts/1">Show</a></td>
+    <td><a href="/posts/1/edit">Edit</a></td>
+    <td><a data-confirm="Are you sure?" data-method="delete" href="/posts/1" rel="nofollow">Destroy</a></td>
+  </tr><tr class="post" id="post_2">
+    <td>The second post title</td>
+    <td>Donec iaculis ultricies orci id consequat. Etiam varius dignissim tincidunt. Sed in lacinia augue. Proin ullamcorper quam at tincidunt consectetur.</td>
+    <td><a href="/posts/2">Show</a></td>
+    <td><a href="/posts/2/edit">Edit</a></td>
+    <td><a data-confirm="Are you sure?" data-method="delete" href="/posts/2" rel="nofollow">Destroy</a></td>
+  </tr>
+    </tbody>
+  </table>
 STRING
