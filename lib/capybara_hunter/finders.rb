@@ -1,4 +1,5 @@
 module CapybaraHunter::Finders
+  CapybaraHunter::FinderMethods += [:find_row, :find_table]
   def find_row(args)
     find_element('tr', args)
   end
