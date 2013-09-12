@@ -17,10 +17,18 @@ describe '.string' do
       string.find_table('Peas').text.wont_have_content 'Dogs'
     end
 
-    describe 'passing a hash' do
-      it 'finds a unique element when passed its class' do
-        string.find_row(class: 'animal').text.must_have_content 'Dogs'
+    describe 'passing an instance' do
+      it 'finds the dog row of when passed an instance' do
+        string.find_row(dog).text.must_have_content 'Edit Dogs'
+        #string.find(string.row(dog)).text.must_have_content 'Edit Dogs'
+        #string.find(string.row(dog)).text.wont_have_content 'Cats'
       end
+    end
+
+    #describe 'passing a hash' do
+      #it 'finds a unique element when passed its class' do
+        #string.find_row(class: 'animal').text.must_have_content 'Dogs'
+      #end
 
       #it 'finds the first root vegetable row when passed multiple classes via hash' do
         #string.first(string.row({ class: 'vegetable.root' })).text.must_have_content 'Carrots'
@@ -37,13 +45,6 @@ describe '.string' do
          #string.find(*string.row({ class: 'vegetable', content: 'Peppers' })).text.must_have_content 'Peppers'
          #string.find(*string.row({ class: 'vegetable', content: 'Peppers' })).text.wont_have_content 'Peas'
        #end
-    end
-
-    #describe 'passing an instance' do
-      #it 'finds the dog row of when passed an instance' do
-        #string.find(string.row(dog)).text.must_have_content 'Edit Dogs'
-        #string.find(string.row(dog)).text.wont_have_content 'Cats'
-      #end
     #end
   end
 

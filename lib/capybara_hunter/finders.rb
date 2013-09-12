@@ -10,18 +10,11 @@ module CapybaraHunter::Finders
   private
 
   def find_element(tag, args)
-    case args
-    when String
+    if String === args
       find(tag, text: args)
-    when Hash
-      args.stringify_keys!
-      if args['class']
-        tag = tag + ".#{args['class']}"
-      end
-      if args['id']
-        tag = tag + "#{args['id']}"
-      end
-      find(tag)
+    else
+      klass = args.class.to_s.downcase
+      find("#{tag}##{klass}_#{args.id}", "#{tag}.#{klass}")
     end
   end
 end
