@@ -49,4 +49,18 @@ TestString =  <<-STRING
   </tr>
     </tbody>
   </table>
+
+  <h1>Guidelines</h2>
+  <ul>
+    <li class='guidelines' id='guideline_1'>Write well</li>
+    <li class='guidelines' id='guideline_2'>Write frequently</li>
+    <li class='guidelines' id='guideline_3'>Write in Latin</li>
+  </ul>
+
+  <h1>Most popular posts<h1>
+  <ol>
+    <li class='posts' id='post_1'>The first post title</li>
+    <li class='posts' id='post_3'>The third post title</li>
+    <li class='posts' id='post_2'>The second post title</li>
+  </ol>
 STRING
