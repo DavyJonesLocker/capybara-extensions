@@ -78,4 +78,8 @@ describe '.string' do
       string.find_table('Jane Doe').row_number(2).text.must_have_content 'The second post title'
     end
   end
+
+  # items ordered using li_number or row_number
+  # paragraph
+  # nav (ul)?
 end
