@@ -64,4 +64,18 @@ describe '.string' do
       string.find_table(post).text.must_have_content unique
     end
   end
+
+  describe '#list_item_number' do
+    it 'return the list item of the number passed in' do
+      string.unordered_list('Write well').list_item_number(2).must_have_content 'Write frequently'
+      string.ordered_list('The first post title').list_item_number(2).must_have_content 'The third post title'
+    end
+  end
+
+  describe '#row_number' do
+    it 'returns the row of the number passed in' do
+      string.find_table('Jane Doe').row_number(1).text.must_have_content 'The first post title'
+      string.find_table('Jane Doe').row_number(2).text.must_have_content 'The second post title'
+    end
+  end
 end

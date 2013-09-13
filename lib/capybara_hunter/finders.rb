@@ -28,6 +28,16 @@ module CapybaraHunter::Finders
     end
   end
 
+  # must be scoped to an ol or ul
+  def list_item_number(number)
+    all('li')[number.to_i - 1]
+  end
+
+  # must be scoped to a table with a tbody
+  def row_number(number)
+    find('tbody').all('tr')[number.to_i - 1]
+  end
+
   private
 
   def find_element(tag, args)
