@@ -1,13 +1,23 @@
 module CapybaraHunter::Finders
   CapybaraHunter::FinderMethods += [:find_row, :find_table]
 
+  def find_article(args)
+    find_element('article', args)
+  end
+
+  alias_method :article, :find_article
+
   def find_paragraph(args)
     find_element('p', args)
   end
 
+  alias_method :paragraph, :find_paragraph
+
   def find_row(args)
     find_element('tr', args)
   end
+
+  alias_method :row, :find_row
 
   def find_table(args)
     if String === args
@@ -16,6 +26,12 @@ module CapybaraHunter::Finders
       row = find_row(args)
       row.find(:xpath, 'ancestor::table')
     end
+  end
+
+  alias_method :table, :find_table
+
+  def first_article(args)
+    first_element('article', args)
   end
 
   def first_paragraph(args)
@@ -30,24 +46,30 @@ module CapybaraHunter::Finders
     first_element('table', args)
   end
 
-  def list_item(args)
+  def find_list_item(args)
     find_element('li', args)
   end
+
+  alias_method :list_item, :find_list_item
 
   # must be scoped to an ol or ul
   def list_item_number(number)
     all('li')[number.to_i - 1]
   end
 
-  def ordered_list(args)
+  def find_ordered_list(args)
     list_item = list_item(args)
     list_item.find(:xpath, 'ancestor::ol')
   end
 
-  def unordered_list(args)
+  alias_method :ordered_list, :find_ordered_list
+
+  def find_unordered_list(args)
     list_item = list_item(args)
     list_item.find(:xpath, 'ancestor::ul')
   end
+
+  alias_method :unordered_list, :find_unordered_list
 
   # must be scoped to a table with a tbody
   def row_number(number)

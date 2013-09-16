@@ -9,11 +9,8 @@ MiniTest::Reporters.use!
 
 class Post
   attr_accessor :id, :title, :body, :author
-  def initialize(id, title, body, author)
+  def initialize(id)
     @id = id
-    @title = title
-    @body = body
-    @author = author
   end
 end
 

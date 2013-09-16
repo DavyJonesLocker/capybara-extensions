@@ -76,4 +76,23 @@ TestString =  <<-STRING
   <p>
     The second paragraph for Jane Doe.
   </p>
+
+  <article class='post' id='post_3'>
+    This is an article for John Doe.
+  </article>
+
+  <article class='post' id='post_1'>
+    This is an article for Jane Doe.
+  </article>
+
+  <article class='post' id='post_2'>
+    This is another article for Jane Doe.
+  </article>
+
+  <nav>
+    <h1>Users</h1>
+    <ul>
+      <li>Jane Doe</li>
+      <li>John Doe</li>
+  </nav>
 STRING
