@@ -32,14 +32,15 @@ TestString =  <<-STRING
       </tr>
     </thead>
     <tbody>
-      <tr class="post" id="post_1">
+  <tr class="post" id="post_1">
     <td>Jane Doe</td>
     <td>The first post title</td>
     <td>Suspendisse id purus quis augue consequat varius ut eget diam. Donec ut lacus vestibulum, porttitor nulla porta, convallis ligula. Nunc sodales venenatis sapien sit amet consequat.</td>
     <td><a href="/posts/1">Show</a></td>
     <td><a href="/posts/1/edit">Edit</a></td>
     <td><a data-confirm="Are you sure?" data-method="delete" href="/posts/1" rel="nofollow">Destroy</a></td>
-  </tr><tr class="post" id="post_2">
+  </tr>
+  <tr class="post" id="post_2">
     <td>Jane Doe</td>
     <td>The second post title</td>
     <td>Donec iaculis ultricies orci id consequat. Etiam varius dignissim tincidunt. Sed in lacinia augue. Proin ullamcorper quam at tincidunt consectetur.</td>
@@ -63,4 +64,16 @@ TestString =  <<-STRING
     <li class='posts' id='post_3'>The third post title</li>
     <li class='posts' id='post_2'>The second post title</li>
   </ol>
+
+  <p>
+    This is a paragraph with the unique string of John Doe.
+  </p>
+
+  <p>
+    The first paragraph for Jane Doe.
+  </p>
+
+  <p>
+    The second paragraph for Jane Doe.
+  </p>
 STRING

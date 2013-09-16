@@ -6,8 +6,10 @@ describe '.string' do
   let(:post) { Post.new(3, 'The third post title', 'Sed id tortor odio. Proin a adipiscing quam. Donec posuere condimentum dolor, mollis consectetur diam consectetur eu. Etiam ipsum augue, imperdiet ac porttitor tristique, hendrerit.', 'John Doe') }
   let(:string) { Capybara.string TestString }
   let(:unique) { 'John Doe' }
-  let(:multi_in_table) { 'Jane Doe' }
+  let(:multiple) { 'Jane Doe' }
 
+  # li
+  #
   describe '#list_item' do
     it 'finds the list item when passed a unique string' do
       string.list_item('well').text.must_have_content 'Write well'
@@ -18,6 +20,15 @@ describe '.string' do
     end
   end
 
+  describe '#list_item_number' do
+    it 'return the list item of the number passed in' do
+      string.unordered_list('Write well').list_item_number(2).must_have_content 'Write frequently'
+      string.ordered_list('The first post title').list_item_number(2).must_have_content 'The third post title'
+    end
+  end
+
+  # ol
+  #
   describe '#ordered_list' do
     it 'finds the ordered list when passed a unique string matching a line item' do
       string.ordered_list('first').text.must_have_content 'The first post title'
@@ -28,6 +39,8 @@ describe '.string' do
     end
   end
 
+  # ul
+  #
   describe '#unordered_list' do
     it 'finds the unordered list when passed a unique string matching a line item' do
       string.unordered_list('well').text.must_have_content 'Write well'
@@ -38,37 +51,43 @@ describe '.string' do
     end
   end
 
+  # tr
+  #
   describe '#find_row' do
     it 'finds a row when passed a unique string' do
       string.find_row(unique).text.must_have_content unique
-      string.find_row(unique).text.wont_have_content multi_in_table
+      string.find_row(unique).text.wont_have_content multiple
     end
 
     it 'finds a row when passed an instance object' do
       string.find_row(post).text.must_have_content unique
+      string.find_row(post).text.wont_have_content multiple
     end
   end
 
-  describe '#find_table' do
-    it 'finds a table when passed a unique string' do
-      string.find_table(unique).text.must_have_content unique
-      string.find_table(unique).text.wont_have_content multi_in_table
+  describe '#first_row' do
+    describe 'passing a string that appears multiple times within the table' do
+      let(:result) { string.first_row(multiple) }
+
+      it 'finds the first row' do
+        result.text.must_have_content 'The first post title'
+      end
+
+      it 'does not return the second row' do
+        result.text.wont_have_content 'The second post title'
+      end
     end
 
-    it 'finds a table when pass a string that occurs multiple times with the table' do
-      string.find_table(multi_in_table).text.must_have_content multi_in_table
-      string.find_table(multi_in_table).text.wont_have_content unique
-    end
+    describe 'passing an instance' do
+      let(:result) { string.first_row(post) }
 
-    it 'finds a row when passed an instance object' do
-      string.find_table(post).text.must_have_content unique
-    end
-  end
+      it 'finds the first row when passed an instance object' do
+        result.text.must_have_content 'The third post title'
+      end
 
-  describe '#list_item_number' do
-    it 'return the list item of the number passed in' do
-      string.unordered_list('Write well').list_item_number(2).must_have_content 'Write frequently'
-      string.ordered_list('The first post title').list_item_number(2).must_have_content 'The third post title'
+      it 'does not return the second row when passed an instance object' do
+        result.text.wont_have_content 'The second post title'
+      end
     end
   end
 
@@ -79,7 +98,55 @@ describe '.string' do
     end
   end
 
-  # items ordered using li_number or row_number
   # paragraph
+  #
+  describe '#find_paragraph' do
+    it 'finds a paragraph when passed a unique string' do
+      string.find_paragraph(unique).text.must_have_content 'John Doe'
+      string.find_paragraph(unique).text.wont_have_content 'Jane Doe'
+    end
+  end
+
+  describe '#first_paragraph' do
+    it 'finds the first paragraph containing a string' do
+      string.first_paragraph(multiple).text.must_have_content 'Jane Doe'
+      string.first_paragraph(multiple).text.wont_have_content 'John Doe'
+    end
+  end
+
+  # table
+  #
+  describe '#find_table' do
+    it 'finds a table when passed a unique string' do
+      string.find_table(unique).text.must_have_content unique
+      string.find_table(unique).text.wont_have_content multiple
+    end
+
+    it 'finds a table when passed a string that occurs multiple times within the table' do
+      string.find_table(multiple).text.must_have_content multiple
+      string.find_table(multiple).text.wont_have_content unique
+    end
+
+    it 'finds a row when passed an instance object' do
+      string.find_table(post).text.must_have_content unique
+    end
+  end
+
+  describe '#first_table' do
+    describe 'passing a string that appears in multiples tables' do
+      let(:result) { string.first_table('Author') }
+
+      it 'finds the first table' do
+        result.text.must_have_content 'John Doe'
+      end
+
+      it 'does not return the second table' do
+        result.text.wont_have_content 'Jane Doe'
+      end
+    end
+  end
+
+
+  # items ordered using li_number or row_number
   # nav (ul)?
 end
