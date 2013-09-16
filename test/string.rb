@@ -65,15 +65,20 @@ TestString =  <<-STRING
     <li class='posts' id='post_2'>The second post title</li>
   </ol>
 
-  <p>
+  <ol>
+    <li>Jane Doe</li>
+    <li>John Doe</li>
+  </ol>
+
+  <p class='post' id='post_3'>
     This is a paragraph with the unique string of John Doe.
   </p>
 
-  <p>
+  <p class='post' id='post_2'>
     The first paragraph for Jane Doe.
   </p>
 
-  <p>
+  <p class='post' id='post_1'>
     The second paragraph for Jane Doe.
   </p>
 
@@ -89,10 +94,35 @@ TestString =  <<-STRING
     This is another article for Jane Doe.
   </article>
 
-  <nav>
+  <nav class='post' id='post_1'>
     <h1>Users</h1>
     <ul>
-      <li>Jane Doe</li>
       <li>John Doe</li>
+    </ul>
   </nav>
+
+  <nav class='post' id='post_2'>
+    <h1>Recent Comments</h1>
+    <ul>
+      <li>Jane Doe</li>
+    </ul>
+  </nav>
+
+  <nav class='post' id='post_3'>
+    <ul>
+      <li>Jane Doe</li>
+    </ul>
+  </nav>
+
+  <section class='post' id='post_3'>
+    A section with John Doe.
+  </section>
+
+  <section class='post' id='post_1'>
+    A section with Jane Doe.
+  </section>
+
+  <section class='post' id='post_2'>
+    Another section with Jane Doe.
+  </section>
 STRING

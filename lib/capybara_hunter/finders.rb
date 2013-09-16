@@ -7,6 +7,25 @@ module CapybaraHunter::Finders
 
   alias_method :article, :find_article
 
+  def find_list_item(args)
+    find_element('li', args)
+  end
+
+  alias_method :list_item, :find_list_item
+
+  def find_nav(args)
+    find_element('nav', args)
+  end
+
+  alias_method :nav, :find_nav
+
+  def find_ordered_list(args)
+    list_item = list_item(args)
+    list_item.find(:xpath, 'ancestor::ol')
+  end
+
+  alias_method :ordered_list, :find_ordered_list
+
   def find_paragraph(args)
     find_element('p', args)
   end
@@ -19,6 +38,12 @@ module CapybaraHunter::Finders
 
   alias_method :row, :find_row
 
+  def find_section(args)
+    find_element('section', args)
+  end
+
+  alias_method :section, :find_section
+
   def find_table(args)
     if String === args
       find_element('table', args)
@@ -30,8 +55,19 @@ module CapybaraHunter::Finders
 
   alias_method :table, :find_table
 
+  def find_unordered_list(args)
+    list_item = list_item(args)
+    list_item.find(:xpath, 'ancestor::ul')
+  end
+
+  alias_method :unordered_list, :find_unordered_list
+
   def first_article(args)
     first_element('article', args)
+  end
+
+  def first_nav(args)
+    first_element('nav', args)
   end
 
   def first_paragraph(args)
@@ -42,34 +78,18 @@ module CapybaraHunter::Finders
     first_element('tr', args)
   end
 
+  def first_section(args)
+    first_element('section', args)
+  end
+
   def first_table(args)
     first_element('table', args)
   end
-
-  def find_list_item(args)
-    find_element('li', args)
-  end
-
-  alias_method :list_item, :find_list_item
 
   # must be scoped to an ol or ul
   def list_item_number(number)
     all('li')[number.to_i - 1]
   end
-
-  def find_ordered_list(args)
-    list_item = list_item(args)
-    list_item.find(:xpath, 'ancestor::ol')
-  end
-
-  alias_method :ordered_list, :find_ordered_list
-
-  def find_unordered_list(args)
-    list_item = list_item(args)
-    list_item.find(:xpath, 'ancestor::ul')
-  end
-
-  alias_method :unordered_list, :find_unordered_list
 
   # must be scoped to a table with a tbody
   def row_number(number)

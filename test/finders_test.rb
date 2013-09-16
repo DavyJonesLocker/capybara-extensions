@@ -3,7 +3,6 @@ require 'capybara_hunter'
 
 describe '.string' do
   let(:guideline) { Guideline.new(1, 'Write well') }
-  #let(:post) { Post.new(3, 'The third post title', 'Sed id tortor odio. Proin a adipiscing quam. Donec posuere condimentum dolor, mollis consectetur diam consectetur eu. Etiam ipsum augue, imperdiet ac porttitor tristique, hendrerit.', 'John Doe') }
   let(:post) { Post.new(3) }
   let(:string) { Capybara.string TestString }
   let(:unique) { 'John Doe' }
@@ -41,44 +40,67 @@ describe '.string' do
 
   # li
   #
-  describe '#list_item' do
+  describe '#find_list_item' do
     it 'finds the list item when passed a unique string' do
       string.list_item('well').text.must_have_content 'Write well'
+      string.list_item('well').text.wont_have_content 'Write frequently'
     end
 
     it 'finds the list item when passed an instance object' do
       string.list_item(post).text.must_have_content 'The third post title'
+      string.list_item(post).text.wont_have_content 'The second post title'
     end
   end
 
   describe '#list_item_number' do
-    it 'return the list item of the number passed in' do
-      string.unordered_list('Write well').list_item_number(2).must_have_content 'Write frequently'
+    it 'return the list item of the number passed in to an ol' do
+      string.find_ordered_list('he first post title').list_item_number(2).must_have_content 'The third post title'
+      string.find_ordered_list('The first post title').list_item_number(2).wont_have_content 'The second post title'
       string.ordered_list('The first post title').list_item_number(2).must_have_content 'The third post title'
+      string.ordered_list('The first post title').list_item_number(2).wont_have_content 'The second post title'
+    end
+
+    it 'returns the list item of the number passed in to a ul' do
+      string.find_unordered_list('Write well').list_item_number(2).must_have_content 'Write frequently'
+      string.find_unordered_list('Write well').list_item_number(2).wont_have_content 'Write in Latin'
+      string.unordered_list('Write well').list_item_number(2).must_have_content 'Write frequently'
+      string.unordered_list('Write well').list_item_number(2).wont_have_content 'Write in Latin'
     end
   end
 
   # ol
   #
-  describe '#ordered_list' do
+  describe '#find_ordered_list' do
     it 'finds the ordered list when passed a unique string matching a line item' do
+      string.find_ordered_list('first').text.must_have_content 'The first post title'
+      string.find_ordered_list('first').text.wont_have_content 'Jane Doe'
       string.ordered_list('first').text.must_have_content 'The first post title'
+      string.ordered_list('first').text.wont_have_content 'Jane Doe'
     end
 
     it 'finds the ordered list when passed an object matching a line item' do
+      string.find_ordered_list(post).text.must_have_content 'The second post title'
+      string.find_ordered_list(post).text.wont_have_content 'Jane Doe'
       string.ordered_list(post).text.must_have_content 'The second post title'
+      string.ordered_list(post).text.wont_have_content 'Jane Doe'
     end
   end
 
   # ul
   #
-  describe '#unordered_list' do
+  describe '#find_unordered_list' do
     it 'finds the unordered list when passed a unique string matching a line item' do
       string.unordered_list('well').text.must_have_content 'Write well'
+      string.unordered_list('well').text.wont_have_content 'Jane Doe'
+      string.find_unordered_list('well').text.must_have_content 'Write well'
+      string.find_unordered_list('well').text.wont_have_content 'Jane Doe'
     end
 
     it 'finds the unordered list when passed an object matching a line item' do
       string.unordered_list(guideline).text.must_have_content 'Write well'
+      string.unordered_list(guideline).text.must_have_content 'Write well'
+      string.find_unordered_list(guideline).text.wont_have_content 'Jane Doe'
+      string.find_unordered_list(guideline).text.wont_have_content 'Jane Doe'
     end
   end
 
@@ -134,60 +156,98 @@ describe '.string' do
   # paragraph
   #
   describe '#find_paragraph' do
-    it 'finds a paragraph when passed a unique string' do
-      string.find_paragraph(unique).text.must_have_content 'John Doe'
-      string.find_paragraph(unique).text.wont_have_content 'Jane Doe'
-      string.paragraph(unique).text.must_have_content 'John Doe'
-      string.paragraph(unique).text.wont_have_content 'Jane Doe'
+    it 'finds the paragraph when passed a unique string' do
+      string.find_paragraph(unique).text.must_have_content unique
+      string.find_paragraph(unique).text.wont_have_content multiple
+      string.paragraph(unique).text.must_have_content unique
+      string.paragraph(unique).text.wont_have_content multiple
+    end
+
+    it 'finds the paragraph when passed an instance' do
+      string.find_paragraph(post).text.must_have_content unique
+      string.find_paragraph(post).text.wont_have_content multiple
+      string.paragraph(post).text.must_have_content unique
+      string.paragraph(post).text.wont_have_content multiple
     end
   end
 
   describe '#first_paragraph' do
     it 'finds the first paragraph containing a string' do
-      string.first_paragraph(multiple).text.must_have_content 'Jane Doe'
-      string.first_paragraph(multiple).text.wont_have_content 'John Doe'
+      string.first_paragraph(multiple).text.must_have_content multiple
+      string.first_paragraph(multiple).text.wont_have_content unique
     end
   end
 
   # table
   #
   describe '#find_table' do
-    it 'finds a table when passed a unique string' do
+    it 'finds the table when passed a unique string' do
       string.find_table(unique).text.must_have_content unique
       string.find_table(unique).text.wont_have_content multiple
       string.table(unique).text.must_have_content unique
       string.table(unique).text.wont_have_content multiple
     end
 
-    it 'finds a table when passed a string that occurs multiple times within the table' do
+    it 'finds the table when passed a non-unique string' do
       string.find_table(multiple).text.must_have_content multiple
       string.find_table(multiple).text.wont_have_content unique
     end
 
-    it 'finds a row when passed an instance object' do
+    it 'finds the table when passed an instance object' do
       string.find_table(post).text.must_have_content unique
+      string.find_table(post).text.wont_have_content multiple
     end
   end
 
   describe '#first_table' do
-    describe 'passing a string that appears in multiples tables' do
-      let(:result) { string.first_table('Author') }
-
-      it 'finds the first table' do
-        result.text.must_have_content 'John Doe'
-      end
-
-      it 'does not return the second table' do
-        result.text.wont_have_content 'Jane Doe'
-      end
+    it 'finds the first table when passed a non-unique string' do
+      string.first_table(multiple).text.must_have_content multiple
+      string.first_table(multiple).text.wont_have_content unique
     end
   end
 
 
   # nav
   #
-  describe '#navigation' do
+  describe '#nav' do
+    it 'finds the nav when passed a unique string' do
+      string.find_nav(unique).text.must_have_content unique
+      string.find_nav(unique).text.wont_have_content multiple
+      string.nav(unique).text.must_have_content unique
+      string.nav(unique).text.wont_have_content multiple
+    end
 
+    it 'finds the nav when passed an instance' do
+      string.find_nav(post).text.must_have_content multiple
+      string.find_nav(post).text.wont_have_content unique
+      string.nav(post).text.must_have_content multiple
+      string.find_nav(post).text.wont_have_content unique
+    end
+  end
+
+  describe '#first_nav' do
+    it 'finds the first nav when passed a non-unique string' do
+      string.first_nav(multiple).text.must_have_content multiple
+      string.first_nav(multiple).text.wont_have_content unique
+    end
+  end
+
+  # section
+  #
+  describe '#section' do
+    it 'finds a section when passed a unique string' do
+      string.find_section(unique).text.must_have_content unique
+      string.find_section(unique).text.wont_have_content multiple
+      string.section(unique).text.must_have_content unique
+      string.section(unique).text.wont_have_content multiple
+    end
+
+    it 'finds a section when passed an instance' do
+      string.find_section(post).text.must_have_content unique
+      string.find_section(post).text.wont_have_content multiple
+      string.section(post).text.must_have_content unique
+      string.section(post).text.wont_have_content multiple
+    end
   end
 
   # items ordered using li_number or row_number
