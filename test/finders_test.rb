@@ -107,49 +107,34 @@ describe '.string' do
   # tr
   #
   describe '#find_row' do
-    it 'finds a row when passed a unique string' do
+    it 'finds the row when passed a unique string' do
       string.find_row(unique).text.must_have_content unique
       string.find_row(unique).text.wont_have_content multiple
       string.row(unique).text.must_have_content unique
       string.row(unique).text.wont_have_content multiple
     end
 
-    it 'finds a row when passed an instance object' do
+    it 'finds the row when passed an instance' do
       string.find_row(post).text.must_have_content unique
       string.find_row(post).text.wont_have_content multiple
+      string.row(post).text.must_have_content unique
+      string.row(post).text.wont_have_content multiple
     end
   end
 
   describe '#first_row' do
-    describe 'passing a string that appears multiple times within the table' do
-      let(:result) { string.first_row(multiple) }
-
-      it 'finds the first row' do
-        result.text.must_have_content 'The first post title'
-      end
-
-      it 'does not return the second row' do
-        result.text.wont_have_content 'The second post title'
-      end
-    end
-
-    describe 'passing an instance' do
-      let(:result) { string.first_row(post) }
-
-      it 'finds the first row when passed an instance object' do
-        result.text.must_have_content 'The third post title'
-      end
-
-      it 'does not return the second row when passed an instance object' do
-        result.text.wont_have_content 'The second post title'
-      end
+    it 'finds the first nav when passed a non-unique string' do
+      string.first_row(multiple).text.must_have_content multiple
+      string.first_row(multiple).text.wont_have_content unique
     end
   end
 
   describe '#row_number' do
     it 'returns the row of the number passed in' do
       string.find_table('Jane Doe').row_number(1).text.must_have_content 'The first post title'
+      string.find_table('Jane Doe').row_number(1).text.wont_have_content 'The second post title'
       string.find_table('Jane Doe').row_number(2).text.must_have_content 'The second post title'
+      string.find_table('Jane Doe').row_number(2).text.wont_have_content 'The first post title'
     end
   end
 
