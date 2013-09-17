@@ -135,4 +135,54 @@ TestString =  <<-STRING
   <section class='post' id='post_2'>
     Another section with Jane Doe.
   </section>
+
+
+  <header class='post' id='post_1'>
+    John Doe
+  </header>
+
+  <header class='post' id='post_2'>
+    Jane Doe
+  </header>
+
+  <header class='post' id='post_3'>
+    Jane Doe
+  </header>
+
+
+  <footer class='post' id='post_1'>
+    John Doe
+  </footer>
+
+  <footer class='post' id='post_2'>
+    Jane Doe
+  </footer>
+
+  <footer class='post' id='post_3'>
+    Jane Doe
+  </footer>
+
+  <aside class='post' id='post_1'>
+    John Doe
+  </aside>
+
+  <aside class='post' id='post_2'>
+    Jane Doe
+  </aside>
+
+  <aside class='post' id='post_3'>
+    Jane Doe
+  </aside>
+
+  <form class='post' id='post_1'>
+    John Doe
+  </form>
+
+  <form class='post' id='post_2'>
+    Jane Doe
+  </form>
+
+  <form class='post' id='post_3'>
+    Jane Doe
+  </form>
 STRING

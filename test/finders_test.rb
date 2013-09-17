@@ -240,5 +240,103 @@ describe '.string' do
     end
   end
 
-  # items ordered using li_number or row_number
+  # header
+  #
+  describe '#header' do
+    it 'finds the header when passed a unique string' do
+      string.find_header(unique).text.must_have_content unique
+      string.find_header(unique).text.wont_have_content multiple
+      string.header(unique).text.must_have_content unique
+      string.header(unique).text.wont_have_content multiple
+    end
+
+    it 'finds the header when passed an instance' do
+      string.find_header(post).text.must_have_content multiple
+      string.find_header(post).text.wont_have_content unique
+      string.header(post).text.must_have_content multiple
+      string.find_header(post).text.wont_have_content unique
+    end
+  end
+
+  describe '#first_header' do
+    it 'finds the first header when passed a non-unique string' do
+      string.first_header(multiple).text.must_have_content multiple
+      string.first_header(multiple).text.wont_have_content unique
+    end
+  end
+
+  # footer
+  #
+  describe '#footer' do
+    it 'finds the footer when passed a unique string' do
+      string.find_footer(unique).text.must_have_content unique
+      string.find_footer(unique).text.wont_have_content multiple
+      string.footer(unique).text.must_have_content unique
+      string.footer(unique).text.wont_have_content multiple
+    end
+
+    it 'finds the footer when passed an instance' do
+      string.find_footer(post).text.must_have_content multiple
+      string.find_footer(post).text.wont_have_content unique
+      string.footer(post).text.must_have_content multiple
+      string.find_footer(post).text.wont_have_content unique
+    end
+  end
+
+  describe '#first_footer' do
+    it 'finds the first footer when passed a non-unique string' do
+      string.first_footer(multiple).text.must_have_content multiple
+      string.first_footer(multiple).text.wont_have_content unique
+    end
+  end
+
+  # aside
+  #
+  describe '#aside' do
+    it 'finds the aside when passed a unique string' do
+      string.find_aside(unique).text.must_have_content unique
+      string.find_aside(unique).text.wont_have_content multiple
+      string.aside(unique).text.must_have_content unique
+      string.aside(unique).text.wont_have_content multiple
+    end
+
+    it 'finds the aside when passed an instance' do
+      string.find_aside(post).text.must_have_content multiple
+      string.find_aside(post).text.wont_have_content unique
+      string.aside(post).text.must_have_content multiple
+      string.find_aside(post).text.wont_have_content unique
+    end
+  end
+
+  describe '#first_aside' do
+    it 'finds the first aside when passed a non-unique string' do
+      string.first_aside(multiple).text.must_have_content multiple
+      string.first_aside(multiple).text.wont_have_content unique
+    end
+  end
+
+  # form
+  #
+  describe '#form' do
+    it 'finds the form when passed a unique string' do
+      string.find_form(unique).text.must_have_content unique
+      string.find_form(unique).text.wont_have_content multiple
+      string.form(unique).text.must_have_content unique
+      string.form(unique).text.wont_have_content multiple
+    end
+
+    it 'finds the form when passed an instance' do
+      string.find_form(post).text.must_have_content multiple
+      string.find_form(post).text.wont_have_content unique
+      string.form(post).text.must_have_content multiple
+      string.find_form(post).text.wont_have_content unique
+    end
+  end
+
+  describe '#first_form' do
+    it 'finds the first form when passed a non-unique string' do
+      string.first_form(multiple).text.must_have_content multiple
+      string.first_form(multiple).text.wont_have_content unique
+    end
+  end
 end

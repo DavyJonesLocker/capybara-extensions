@@ -7,6 +7,30 @@ module CapybaraExtensions::Finders
 
   alias_method :article, :find_article
 
+  def find_aside(args)
+    find_element('aside', args)
+  end
+
+  alias_method :aside, :find_aside
+
+  def find_footer(args)
+    find_element('footer', args)
+  end
+
+  alias_method :footer, :find_footer
+
+  def find_form(args)
+    find_element('form', args)
+  end
+
+  alias_method :form, :find_form
+
+  def find_header(args)
+    find_element('header', args)
+  end
+
+  alias_method :header, :find_header
+
   def find_list_item(args)
     find_element('li', args)
   end
@@ -62,6 +86,22 @@ module CapybaraExtensions::Finders
 
   def first_article(args)
     first_element('article', args)
+  end
+
+  def first_aside(args)
+    first_element('aside', args)
+  end
+
+  def first_footer(args)
+    first_element('footer', args)
+  end
+
+  def first_form(args)
+    first_element('form', args)
+  end
+
+  def first_header(args)
+    first_element('header', args)
   end
 
   def first_nav(args)
