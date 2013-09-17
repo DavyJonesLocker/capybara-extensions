@@ -89,18 +89,25 @@ describe '.string' do
   # ul
   #
   describe '#find_unordered_list' do
-    it 'finds the unordered list when passed a unique string matching a line item' do
-      string.unordered_list('well').text.must_have_content 'Write well'
-      string.unordered_list('well').text.wont_have_content 'Jane Doe'
-      string.find_unordered_list('well').text.must_have_content 'Write well'
-      string.find_unordered_list('well').text.wont_have_content 'Jane Doe'
+    it 'finds the unordered list when passed a unique string' do
+      string.find_unordered_list(unique).text.must_have_content unique
+      string.find_unordered_list(unique).text.wont_have_content multiple
+      string.unordered_list(unique).text.must_have_content unique
+      string.unordered_list(unique).text.wont_have_content multiple
     end
 
-    it 'finds the unordered list when passed an object matching a line item' do
-      string.unordered_list(guideline).text.must_have_content 'Write well'
-      string.unordered_list(guideline).text.must_have_content 'Write well'
-      string.find_unordered_list(guideline).text.wont_have_content 'Jane Doe'
-      string.find_unordered_list(guideline).text.wont_have_content 'Jane Doe'
+    it 'finds the unordered list when passed an instance' do
+      string.find_unordered_list(post).text.must_have_content unique
+      string.find_unordered_list(post).text.wont_have_content multiple
+      string.unordered_list(post).text.must_have_content unique
+      string.unordered_list(post).text.wont_have_content multiple
+    end
+  end
+
+  describe '#first_unordered_list' do
+    it 'finds the first unordered list when passed a non-unique string' do
+      string.first_unordered_list(multiple).text.must_have_content multiple
+      string.first_unordered_list(multiple).text.wont_have_content unique
     end
   end
 

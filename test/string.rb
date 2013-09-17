@@ -51,14 +51,20 @@ TestString =  <<-STRING
     </tbody>
   </table>
 
-  <h1>Guidelines</h2>
-  <ul>
-    <li class='guidelines' id='guideline_1'>Write well</li>
-    <li class='guidelines' id='guideline_2'>Write frequently</li>
-    <li class='guidelines' id='guideline_3'>Write in Latin</li>
+
+  <ul class='posts' id='post_3'>
+    <li>John Doe</li>
   </ul>
 
-  <h1>Most popular posts<h1>
+  <ul class='posts' id='post_2'>
+    <li>Jane Doe</li>
+  </ul>
+
+  <ul class='posts' id='post_1'>
+    <li>Jane Doe</li>
+  </ul>
+
+
   <ol>
     <li class='posts' id='post_1'>The first post title</li>
     <li class='posts' id='post_3'>The third post title</li>
@@ -69,6 +75,7 @@ TestString =  <<-STRING
     <li>Jane Doe</li>
     <li>John Doe</li>
   </ol>
+
 
   <p class='post' id='post_3'>
     This is a paragraph with the unique string of John Doe.
@@ -82,6 +89,7 @@ TestString =  <<-STRING
     The second paragraph for Jane Doe.
   </p>
 
+
   <article class='post' id='post_3'>
     This is an article for John Doe.
   </article>
@@ -93,6 +101,7 @@ TestString =  <<-STRING
   <article class='post' id='post_2'>
     This is another article for Jane Doe.
   </article>
+
 
   <nav class='post' id='post_1'>
     <h1>Users</h1>
@@ -113,6 +122,7 @@ TestString =  <<-STRING
       <li>Jane Doe</li>
     </ul>
   </nav>
+
 
   <section class='post' id='post_3'>
     A section with John Doe.
