@@ -175,7 +175,7 @@ TestString =  <<-STRING
   </aside>
 
   <form class='post' id='post_1'>
-    John Doe
+    <input label='John Doe'>John Doe</input>
   </form>
 
   <form class='post' id='post_2'>

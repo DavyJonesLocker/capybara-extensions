@@ -2,12 +2,12 @@ require 'test_helper'
 require 'capybara_extensions'
 
 describe '.string' do
-  let(:guideline) { Guideline.new(1, 'Write well') }
   let(:post) { Post.new(3) }
   let(:string) { Capybara.string TestString }
   let(:unique) { 'John Doe' }
   let(:multiple) { 'Jane Doe' }
 
+  # Finders
   # article
   #
   describe '#find_article' do

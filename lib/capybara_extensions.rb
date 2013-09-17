@@ -6,6 +6,11 @@ end
 
 require 'capybara_extensions/finders'
 
+module CapybaraExtensions
+  MatcherMethods = []
+end
+require 'capybara_extensions/matchers'
+
 module Capybara::DSL
   CapybaraExtensions::FinderMethods.each do |method|
     define_method method do |*args, &block|
