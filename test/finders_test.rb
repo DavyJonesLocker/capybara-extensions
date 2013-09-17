@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'capybara_hunter'
+require 'capybara_extensions'
 
 describe '.string' do
   let(:guideline) { Guideline.new(1, 'Write well') }

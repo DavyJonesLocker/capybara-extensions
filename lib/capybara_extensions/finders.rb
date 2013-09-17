@@ -1,5 +1,5 @@
-module CapybaraHunter::Finders
-  CapybaraHunter::FinderMethods += [:find_row, :find_table]
+module CapybaraExtensions::Finders
+  CapybaraExtensions::FinderMethods += [:find_row, :find_table]
 
   def find_article(args)
     find_element('article', args)

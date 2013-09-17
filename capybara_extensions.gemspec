@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'capybara_hunter/version'
+require 'capybara_extensions/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "capybara_hunter"
-  spec.version       = CapybaraHunter::VERSION
+  spec.name          = "capybara_extensions"
+  spec.version       = CapybaraExtensions::VERSION
   spec.authors       = ["Michael Dupuis Jr.", 'Dan McClain']
   spec.email         = ["michael.dupuis@dockyard.com", 'rubygems@danmcclain.net']
   spec.description   = %q{Additional finders for Capybara.}
