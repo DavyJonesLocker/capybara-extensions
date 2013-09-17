@@ -20,8 +20,7 @@ module CapybaraExtensions::Finders
   alias_method :nav, :find_nav
 
   def find_ordered_list(args)
-    list_item = list_item(args)
-    list_item.find(:xpath, 'ancestor::ol')
+    find_element('ol', args)
   end
 
   alias_method :ordered_list, :find_ordered_list
@@ -56,8 +55,7 @@ module CapybaraExtensions::Finders
   alias_method :table, :find_table
 
   def find_unordered_list(args)
-    list_item = list_item(args)
-    list_item.find(:xpath, 'ancestor::ul')
+    find_element('ul', args)
   end
 
   alias_method :unordered_list, :find_unordered_list
@@ -68,6 +66,10 @@ module CapybaraExtensions::Finders
 
   def first_nav(args)
     first_element('nav', args)
+  end
+
+  def first_ordered_list(args)
+    first_element('ol', args)
   end
 
   def first_paragraph(args)
@@ -84,6 +86,10 @@ module CapybaraExtensions::Finders
 
   def first_table(args)
     first_element('table', args)
+  end
+
+  def first_unordered_list(args)
+    first_element('ul', args)
   end
 
   # must be scoped to an ol or ul

@@ -52,28 +52,36 @@ TestString =  <<-STRING
   </table>
 
 
+  <ul>
+    <li class='post' id='post_3'>foo</li>
+    <li class='post' id='post_2'>bar</li>
+    <li class='post' id='post_1'>bar</li>
+  </ul>
+
+
   <ul class='posts' id='post_3'>
-    <li>John Doe</li>
+    John Doe
   </ul>
 
   <ul class='posts' id='post_2'>
-    <li>Jane Doe</li>
+    Jane Doe
   </ul>
 
   <ul class='posts' id='post_1'>
-    <li>Jane Doe</li>
+    Jane Doe
   </ul>
 
 
-  <ol>
-    <li class='posts' id='post_1'>The first post title</li>
-    <li class='posts' id='post_3'>The third post title</li>
-    <li class='posts' id='post_2'>The second post title</li>
+  <ol class='posts' id='post_3'>
+    John Doe
   </ol>
 
-  <ol>
-    <li>Jane Doe</li>
-    <li>John Doe</li>
+  <ol class='posts' id='post_2'>
+    Jane Doe
+  </ol>
+
+  <ol class='posts' id='post_1'>
+    Jane Doe
   </ol>
 
 
@@ -104,23 +112,15 @@ TestString =  <<-STRING
 
 
   <nav class='post' id='post_1'>
-    <h1>Users</h1>
-    <ul>
-      <li>John Doe</li>
-    </ul>
+    John Doe
   </nav>
 
   <nav class='post' id='post_2'>
-    <h1>Recent Comments</h1>
-    <ul>
-      <li>Jane Doe</li>
-    </ul>
+    Jane Doe
   </nav>
 
   <nav class='post' id='post_3'>
-    <ul>
-      <li>Jane Doe</li>
-    </ul>
+    Jane Doe
   </nav>
 
 

@@ -12,77 +12,75 @@ describe '.string' do
   #
   describe '#find_article' do
     it 'finds the article when passed a unique string' do
-      string.find_article('John Doe').text.must_have_content 'John Doe'
-      string.find_article('John Doe').text.wont_have_content 'Jane Doe'
-      string.article('John Doe').text.must_have_content 'John Doe'
-      string.article('John Doe').text.wont_have_content 'Jane Doe'
+      string.find_article(unique).text.must_have_content unique
+      string.find_article(unique).text.wont_have_content multiple
+      string.article(unique).text.must_have_content unique
+      string.article(unique).text.wont_have_content multiple
     end
 
     it 'finds the article when passed an instance' do
-      string.find_article(post).text.must_have_content 'John Doe'
-      string.find_article(post).text.wont_have_content 'Jane Doe'
-      string.article(post).text.must_have_content 'John Doe'
-      string.article(post).text.wont_have_content 'Jane Doe'
+      string.find_article(post).text.must_have_content unique
+      string.find_article(post).text.wont_have_content multiple
+      string.article(post).text.must_have_content unique
+      string.article(post).text.wont_have_content multiple
     end
   end
 
   describe '#first_article' do
-    it 'finds the first article when passed a string' do
+    it 'finds the first article when passed a non-unique string' do
       string.first_article(multiple).text.must_have_content multiple
       string.first_article(multiple).text.wont_have_content unique
     end
-
-    it 'finds the first article when passed an instance' do
-      string.first_article(Post.new(2)).text.must_have_content 'This is another article for Jane Doe'
-      string.first_article(Post.new(2)).text.wont_have_content 'This is an article for Jane Doe'
-    end
   end
+
 
   # li
   #
   describe '#find_list_item' do
     it 'finds the list item when passed a unique string' do
-      string.list_item('well').text.must_have_content 'Write well'
-      string.list_item('well').text.wont_have_content 'Write frequently'
+      string.find_list_item('foo').text.must_have_content 'foo'
+      string.find_list_item('foo').text.wont_have_content 'bar'
+      string.list_item('foo').text.must_have_content 'foo'
+      string.list_item('foo').text.wont_have_content 'bar'
     end
 
-    it 'finds the list item when passed an instance object' do
-      string.list_item(post).text.must_have_content 'The third post title'
-      string.list_item(post).text.wont_have_content 'The second post title'
+    it 'finds the list item when passed an instance' do
+      string.find_list_item(post).text.must_have_content 'foo'
+      string.find_list_item(post).text.wont_have_content 'bar'
+      string.list_item(post).text.must_have_content 'foo'
+      string.list_item(post).text.wont_have_content 'bar'
     end
   end
 
   describe '#list_item_number' do
     it 'return the list item of the number passed in to an ol' do
-      string.find_ordered_list('he first post title').list_item_number(2).must_have_content 'The third post title'
-      string.find_ordered_list('The first post title').list_item_number(2).wont_have_content 'The second post title'
-      string.ordered_list('The first post title').list_item_number(2).must_have_content 'The third post title'
-      string.ordered_list('The first post title').list_item_number(2).wont_have_content 'The second post title'
-    end
-
-    it 'returns the list item of the number passed in to a ul' do
-      string.find_unordered_list('Write well').list_item_number(2).must_have_content 'Write frequently'
-      string.find_unordered_list('Write well').list_item_number(2).wont_have_content 'Write in Latin'
-      string.unordered_list('Write well').list_item_number(2).must_have_content 'Write frequently'
-      string.unordered_list('Write well').list_item_number(2).wont_have_content 'Write in Latin'
+      string.find_unordered_list('foo').list_item_number(2).must_have_content 'bar'
+      string.find_unordered_list('foo').list_item_number(2).wont_have_content 'foo'
     end
   end
 
   # ol
   #
   describe '#find_ordered_list' do
-    it 'finds the ordered list when passed a unique string matching a line item' do
-      string.find_ordered_list('first').text.must_have_content 'The first post title'
-      string.find_ordered_list('first').text.wont_have_content 'Jane Doe'
-      string.ordered_list('first').text.must_have_content 'The first post title'
-      string.ordered_list('first').text.wont_have_content 'Jane Doe'
+    it 'finds the ordered list when passed a unique string' do
+      string.find_ordered_list(unique).text.must_have_content unique
+      string.find_ordered_list(unique).text.wont_have_content multiple
+      string.ordered_list(unique).text.must_have_content unique
+      string.ordered_list(unique).text.wont_have_content multiple
     end
 
-    it 'finds the ordered list when passed an object matching a line item' do
-      string.find_ordered_list(post).text.must_have_content 'The second post title'
-      string.find_ordered_list(post).text.wont_have_content 'Jane Doe'
-      string.ordered_list(post).text.must_have_content 'The second post title'
-      string.ordered_list(post).text.wont_have_content 'Jane Doe'
+    it 'finds the ordered list when passed an instance' do
+      string.find_ordered_list(post).text.must_have_content unique
+      string.find_ordered_list(post).text.wont_have_content multiple
+      string.ordered_list(post).text.must_have_content unique
+      string.ordered_list(post).text.wont_have_content multiple
+    end
+  end
+
+  describe '#first_ordered_list' do
+    it 'finds the first ordered list when passed a non-unique string' do
+      string.first_ordered_list(multiple).text.must_have_content multiple
+      string.first_ordered_list(multiple).text.wont_have_content unique
     end
   end
 
