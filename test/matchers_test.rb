@@ -27,6 +27,18 @@ describe '.string' do
     end
   end
 
+  describe '#has_meta_tag?' do
+    it 'returns true when the meta tag name and content are present' do
+      string.has_meta_tag?('title', 'CapybaraExtensions!')
+    end
+  end
+
+  describe '#has_no_meta_tag?' do
+    it 'returns true when the meta tag name and content are not present' do
+      string.has_no_meta_tag?('title', 'foo')
+    end
+  end
+
   describe '#has_no_image?' do
     it 'returns true if the image does not have an alt with the argument' do
       string.has_no_image?(alt: multiple).must_equal true
