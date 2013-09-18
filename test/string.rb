@@ -175,14 +175,18 @@ TestString =  <<-STRING
   </aside>
 
   <form class='post' id='post_1'>
-    <input label='John Doe'>John Doe</input>
+    John Doe
+    <input id='name' value='John Doe'>
   </form>
 
   <form class='post' id='post_2'>
     Jane Doe
+    <input id='name' value='Jane Doe'>
   </form>
 
   <form class='post' id='post_3'>
     Jane Doe
   </form>
+
+  <img src='http://example.com/johndoe' alt='John Doe'/>
 STRING

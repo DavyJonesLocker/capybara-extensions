@@ -1,5 +1,5 @@
 module CapybaraExtensions::Finders
-  CapybaraExtensions::FinderMethods += [:find_article, :find_aside, :find_footer, :find_form, :find_header, :find_list_item, :find_nav, :find_ordered_list, :find_paragraph, :find_row, :find_section, :find_table, :find_unordered_list, :first_article, :first_aside, :first_footer, :first_form, :first_header, :first_nav, :first_ordered_list, :first_paragraph, :first_row, :first_section, :first_table, :first_unordered_list, :list_item_number, :row_number]
+  CapybaraExtensions::ExtensionMethods += [:find_article, :find_aside, :find_footer, :find_form, :find_header, :find_list_item, :find_nav, :find_ordered_list, :find_paragraph, :find_row, :find_section, :find_table, :find_unordered_list, :first_article, :first_aside, :first_footer, :first_form, :first_header, :first_nav, :first_ordered_list, :first_paragraph, :first_row, :first_section, :first_table, :first_unordered_list, :list_item_number, :row_number]
 
   def find_article(args)
     find_element('article', args)
