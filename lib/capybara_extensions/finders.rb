@@ -1,5 +1,5 @@
 module CapybaraExtensions::Finders
-  CapybaraExtensions::ExtensionMethods += [:find_article, :find_aside, :find_footer, :find_form, :find_header, :find_list_item, :find_nav, :find_ordered_list, :find_paragraph, :find_row, :find_section, :find_table, :find_unordered_list, :first_article, :first_aside, :first_footer, :first_form, :first_header, :first_nav, :first_ordered_list, :first_paragraph, :first_row, :first_section, :first_table, :first_unordered_list, :list_item_number, :row_number]
+  CapybaraExtensions::ExtensionMethods += [:find_article, :find_aside, :find_footer, :find_form, :find_header, :find_list_item, :find_navigation, :find_ordered_list, :find_paragraph, :find_row, :find_section, :find_table, :find_unordered_list, :first_article, :first_aside, :first_footer, :first_form, :first_header, :first_nav, :first_ordered_list, :first_paragraph, :first_row, :first_section, :first_table, :first_unordered_list, :list_item_number, :row_number]
 
   def find_article(args)
     find_element('article', args)
@@ -37,11 +37,11 @@ module CapybaraExtensions::Finders
 
   alias_method :list_item, :find_list_item
 
-  def find_nav(args)
+  def find_navigation(args)
     find_element('nav', args)
   end
 
-  alias_method :nav, :find_nav
+  alias_method :navigation, :find_navigation
 
   def find_ordered_list(args)
     find_element('ol', args)
@@ -104,7 +104,7 @@ module CapybaraExtensions::Finders
     first_element('header', args)
   end
 
-  def first_nav(args)
+  def first_navigation(args)
     first_element('nav', args)
   end
 

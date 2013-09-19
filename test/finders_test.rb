@@ -197,28 +197,28 @@ describe '.string' do
   end
 
 
-  # nav
+  # navigation
   #
-  describe '#nav' do
-    it 'finds the nav when passed a unique string' do
-      string.find_nav(unique).text.must_have_content unique
-      string.find_nav(unique).text.wont_have_content multiple
-      string.nav(unique).text.must_have_content unique
-      string.nav(unique).text.wont_have_content multiple
+  describe '#navigation' do
+    it 'finds the navigation when passed a unique string' do
+      string.find_navigation(unique).text.must_have_content unique
+      string.find_navigation(unique).text.wont_have_content multiple
+      string.navigation(unique).text.must_have_content unique
+      string.navigation(unique).text.wont_have_content multiple
     end
 
     it 'finds the nav when passed an instance' do
-      string.find_nav(post).text.must_have_content multiple
-      string.find_nav(post).text.wont_have_content unique
-      string.nav(post).text.must_have_content multiple
-      string.find_nav(post).text.wont_have_content unique
+      string.find_navigation(post).text.must_have_content multiple
+      string.find_navigation(post).text.wont_have_content unique
+      string.navigation(post).text.must_have_content multiple
+      string.find_navigation(post).text.wont_have_content unique
     end
   end
 
-  describe '#first_nav' do
-    it 'finds the first nav when passed a non-unique string' do
-      string.first_nav(multiple).text.must_have_content multiple
-      string.first_nav(multiple).text.wont_have_content unique
+  describe '#first_navigation' do
+    it 'finds the first navigation when passed a non-unique string' do
+      string.first_navigation(multiple).text.must_have_content multiple
+      string.first_navigation(multiple).text.wont_have_content unique
     end
   end
 
