@@ -9,11 +9,11 @@ class PostsTest < ActionDispatch::IntegrationTest
     end
 
     it 'finds posts table' do
-      find_table 'The first post title'
+      find_table 'Title of first post'
     end
 
     it 'finds second post row' do
-      find_row 'Donec iaculis ultricies orci id consequat.'
+      find_row 'Body of second post'
     end
 
     it 'finds image of John Doe' do

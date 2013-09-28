@@ -35,3 +35,7 @@ class ActionDispatch::IntegrationTest
 end
 
 class Post < ActiveRecord::Base; end
+
+class ActiveSupport::TestCase
+  fixtures :all
+end
