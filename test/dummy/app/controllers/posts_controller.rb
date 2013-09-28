@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    Post.create(id: 1, title: 'Title', body: 'Body', author: 'Author')
+    byebug
     @posts = Post.all
   end
 

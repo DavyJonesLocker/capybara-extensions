@@ -4,6 +4,7 @@ class PostsTest < ActionDispatch::IntegrationTest
   describe 'posts#index' do
     before do
       visit posts_path
+      byebug
     end
 
     it 'finds posts table' do
