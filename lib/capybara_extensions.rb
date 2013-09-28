@@ -26,5 +26,5 @@ end
 
 Capybara::Node::Base.send(:include, CapybaraExtensions::Finders)
 Capybara::Node::Base.send(:include, CapybaraExtensions::Matchers)
-Capybara::Node::Simple.send(:include, CapybaraExtensions::Finders)
 Capybara::Node::Simple.send(:include, CapybaraExtensions::Matchers)
+Capybara::Node::Simple.send(:include, CapybaraExtensions::Finders)

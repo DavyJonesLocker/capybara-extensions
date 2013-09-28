@@ -23,6 +23,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'capybara_minitest_spec'
   spec.add_development_dependency 'minitest', '< 5.0'
   spec.add_development_dependency 'minitest-reporters', '~> 0.14.21'
+  spec.add_development_dependency 'minitest-rails'
   spec.add_development_dependency 'm'
   spec.add_development_dependency 'rake'
+
+  spec.add_development_dependency 'builder'
+  spec.add_development_dependency 'rails', '~> 4.0.0'
 end

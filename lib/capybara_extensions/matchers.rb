@@ -1,5 +1,5 @@
 module CapybaraExtensions::Matchers
-  CapybaraExtensions::ExtensionMethods += [:has_field_value?, :has_image?, :has_meta_tag?]
+  CapybaraExtensions::ExtensionMethods.concat [:has_field_value?, :has_image?, :has_meta_tag?]
 
   def has_image?(options = {})
     raise "Must pass a hash with 'alt' or 'src'" unless options.is_a?(Hash) and (options.has_key?(:alt) or options.has_key?(:src))
