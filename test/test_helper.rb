@@ -1,7 +1,6 @@
 ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../dummy/config/environment.rb',  __FILE__)
 require 'rails/test_help'
-#require 'rails'
 require 'minitest/rails'
 require 'byebug'
 require 'capybara/rails'
@@ -36,5 +35,3 @@ class ActionDispatch::IntegrationTest
 end
 
 class Post < ActiveRecord::Base; end
-
-Post.create(title: 'Title', body: 'Body', author: 'Author')

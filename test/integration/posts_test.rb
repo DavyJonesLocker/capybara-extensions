@@ -2,9 +2,10 @@ require 'test_helper'
 
 class PostsTest < ActionDispatch::IntegrationTest
   describe 'posts#index' do
+    let(:john) { posts(:one) }
+
     before do
       visit posts_path
-      byebug
     end
 
     it 'finds posts table' do
