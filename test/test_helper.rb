@@ -21,6 +21,10 @@ class MiniTest::Spec
   end
 end
 
+module MiniTest::Expectations
+  infect_an_assertion :assert_received, :must_have_received
+end
+
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
