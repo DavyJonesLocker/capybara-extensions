@@ -18,7 +18,7 @@ class PostsTest < ActionDispatch::IntegrationTest
 
     it 'finds image of John Doe' do
       page.has_image?(src: 'http://example.com/johndoe').must_equal true
-      #page.must_have_image(src: 'http://example.com/johndoe')
+      # page.must_have_image(src: 'http://example.com/johndoe')
     end
   end
 end

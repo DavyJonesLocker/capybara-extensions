@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'capybara_extensions'
 
 describe '.string' do
   let(:post) { Post.new(3) }

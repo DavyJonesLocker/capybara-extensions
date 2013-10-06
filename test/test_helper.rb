@@ -19,19 +19,16 @@ class MiniTest::Spec
   class << self
     alias :context :describe
   end
-
-  before do
-    DatabaseCleaner.start
-  end
-
-  after do
-    DtabaseCleaner.stop
-  end
 end
 
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
+
+  teardown do
+    DatabaseCleaner.clean
+    Capybara.reset_sessions!
+  end
 end
 
 class Post < ActiveRecord::Base; end
