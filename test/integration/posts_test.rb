@@ -18,8 +18,7 @@ class PostsTest < ActionDispatch::IntegrationTest
 
     it "passes if has_field_value returns true" do
       visit edit_post_path(post)
-      byebug
-      page.has_field_value?('title', with: 'Title of first post')
+      page.has_field_value?('Title', of: 'Title of first post')
     end
 
     # TODO: Decide if we really want to overwite the capybara matcher

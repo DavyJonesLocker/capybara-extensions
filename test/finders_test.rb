@@ -338,4 +338,14 @@ describe '.string' do
       string.first_form(multiple).text.wont_have_content unique
     end
   end
+
+  describe '#find_image' do
+    let(:image) { 'http://example.com/johndoe' }
+
+    it 'finds an image when passed src and alt' do
+      string.find_image(src: 'http://example.com/johndoe', alt: 'John Doe').native.attributes['src'].value.must_equal image
+      string.find_image(src: 'http://example.com/johndoe').native.attributes['src'].value.must_equal image
+      string.find_image(alt: 'John Doe').native.attributes['src'].value.must_equal image
+    end
+  end
 end

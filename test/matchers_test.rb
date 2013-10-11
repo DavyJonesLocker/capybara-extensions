@@ -22,19 +22,19 @@ describe '.string' do
 
   describe '#has_field_value?' do
     it 'returns true when the field has the passed in value' do
-      string.find_form(unique).has_field_value?('name', with: unique)
+      string.find_form(unique).has_field_value?('name', of: unique).must_equal true
     end
   end
 
   describe '#has_meta_tag?' do
     it 'returns true when the meta tag name and content are present' do
-      string.has_meta_tag?('title', 'CapybaraExtensions!')
+      string.has_meta_tag?('title', 'CapybaraExtensions!').must_equal true
     end
   end
 
   describe '#has_no_meta_tag?' do
     it 'returns true when the meta tag name and content are not present' do
-      string.has_no_meta_tag?('title', 'foo')
+      string.has_no_meta_tag?('title', 'foo').must_equal true
     end
   end
 
@@ -58,7 +58,7 @@ describe '.string' do
 
   describe '#has_no_field_value?' do
     it 'returns true if the field does not have the passed in value' do
-      string.find_form(unique).has_no_field_value?('name', with: multiple)
+      string.find_form(unique).has_no_field_value?('name', with: multiple).must_equal true
     end
   end
 end
