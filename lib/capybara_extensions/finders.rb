@@ -25,7 +25,7 @@ module CapybaraExtensions::Finders
 
   alias_method :form, :find_form
 
-  def all_images(options = {})
+  def image_locator(options = {})
     raise "Must pass a hash containing 'src' or 'alt'" unless options.is_a?(Hash) && (options.has_key?(:src) || options.has_key?(:alt))
     if options[:src] && options[:alt]
       all(:xpath, "//img[@src='#{options[:src]}' and @alt='#{options[:alt]}']")
@@ -38,10 +38,14 @@ module CapybaraExtensions::Finders
 
   def find_image(options = {})
     raise "Must pass a hash containing 'src' or 'alt'" unless options.is_a?(Hash) && (options.has_key?(:src) || options.has_key?(:alt))
-    all_images(options).first
+    if options[:src] && options[:alt]
+      find(:xpath, "//img[@src='#{options[:src]}' and @alt='#{options[:alt]}']")
+    elsif options[:src]
+      find(:xpath, "//img[@src='#{options[:src]}']")
+    elsif options[:alt]
+      find(:xpath, "//img[@alt='#{options[:alt]}']")
+    end
   end
-
-  alias_method :image, :find_image
 
   def find_header(args)
     find_element('header', args)
