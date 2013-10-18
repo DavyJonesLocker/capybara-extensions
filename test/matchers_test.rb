@@ -47,29 +47,57 @@ describe '.string' do
     end
   end
 
-  # # field_values
-  # describe '#has_field_value?' do
-    # it 'returns true when the field has the passed in value' do
-      # string.find_form(unique).has_field_value?('name', of: unique).must_equal true
-    # end
-  # end
+  # field_values
+  describe '#has_field_value?' do
+    it 'returns true when the field has the passed in value' do
+      string.find_form(unique).has_field_value?('name', of: unique).must_equal true
+    end
 
-  # describe '#has_no_field_value?' do
-    # it 'returns true if the field does not have the passed in value' do
-      # string.find_form(unique).has_no_field_value?('name', with: multiple).must_equal true
-    # end
-  # end
+    it 'returns false when the field does not have the passed in value' do
+      string.find_form(unique).has_field_value?('name', of: multiple).must_equal false
+    end
+  end
 
-  # # meta tags
-  # describe '#has_meta_tag?' do
-    # it 'returns true when the meta tag name and content are present' do
-      # string.has_meta_tag?('title', 'CapybaraExtensions!').must_equal true
-    # end
-  # end
+  describe '#has_no_field_value?' do
+    it 'returns true if the field does not have the passed in value' do
+      string.find_form(unique).has_no_field_value?('name', of: 'John Doh').must_equal true
+    end
 
-  # describe '#has_no_meta_tag?' do
-    # it 'returns true when the meta tag name and content are not present' do
-      # string.has_no_meta_tag?('title', 'foo').must_equal true
-    # end
-  # end
+    it 'returns false if the field has the passed in value' do
+      string.find_form(unique).has_no_field_value?('name', of: unique).must_equal false
+    end
+  end
+
+  # meta tags
+  describe '#has_meta_tag?' do
+    it 'returns true when the meta tag name and content are present' do
+      string.has_meta_tag?('title', 'CapybaraExtensions!').must_equal true
+    end
+
+    it 'returns false when the meta tag name is not present' do
+      string.has_meta_tag?('nonexistent_name', 'CapybaraExtensions!').must_equal false
+    end
+
+    it 'returns false when the meta tag content is not present' do
+      string.has_meta_tag?('title', 'Nonexistent content').must_equal false
+    end
+  end
+
+  describe '#has_no_meta_tag?' do
+    it 'returns true when the meta tag name and content are not present' do
+      string.has_no_meta_tag?('title', 'foo').must_equal true
+    end
+
+    it 'returns true when the meta tag name is not present' do
+      string.has_no_meta_tag?('nonexistent_name', 'CapybaraExtensions!').must_equal true
+    end
+
+    it 'returns true when the meta tag content is not present' do
+      string.has_no_meta_tag?('title', 'Nonexistent content').must_equal true
+    end
+
+    it 'returns false when the meta tag name and content are present' do
+      string.has_no_meta_tag?('title', 'CapybaraExtensions!').must_equal false
+    end
+  end
 end

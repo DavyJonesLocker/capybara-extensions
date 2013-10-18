@@ -5,4 +5,11 @@ module CapybaraExtensions::Locators
     locator.concat "[@src='#{options[:src]}']" if options[:src]
     locator
   end
-end 
+
+  def meta_tag_locator(name, content)
+    locator = String.new
+    locator.concat "[@name='#{name}']"
+    locator.concat "[@content='#{content}']"
+    locator
+  end
+end

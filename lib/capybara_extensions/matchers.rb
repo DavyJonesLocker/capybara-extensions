@@ -18,20 +18,27 @@ module CapybaraExtensions::Matchers
   #field values
   def has_field_value?(locator, options = {})
     raise "Must pass a hash containing 'of'" unless options.is_a?(Hash) and options.has_key?(:of)
-    find_field(locator).value.must_equal options[:of]
+    synchronize do
+      unless Capybara::Helpers.normalize_whitespace(text).match(Capybara::Helpers.to_regexp(options[:of]))
+        raise Capybara::ExpectationNotMet
+      end
+    end
+    return true
+  rescue Capybara::ExpectationNotMet
+    return false
   end
 
   def has_no_field_value?(locator, options = {})
-    raise "Must pass a hash containing 'with'" unless options.is_a?(Hash) and options.has_key?(:with)
-    find_field(locator).value.wont_equal options[:with]
+    raise "Must pass a hash containing 'of'" unless options.is_a?(Hash) and options.has_key?(:of)
+    !has_field_value?(locator, options)
   end
 
   # meta tags
   def has_meta_tag?(name, content)
-    has_selector?(:xpath, "/html/head/meta[@name='#{name}'][@content='#{content}']", visible: false)
+    has_selector?(:xpath, "/html/head/meta#{meta_tag_locator(name, content)}", visible: false)
   end
 
   def has_no_meta_tag?(name, content)
-    has_no_selector?(:xpath, "/html/head/meta[@name='#{name}'][@content='#{content}']", visible: false)
+    has_no_selector?(:xpath, "/html/head/meta#{meta_tag_locator(name, content)}", visible: false)
   end
 end
