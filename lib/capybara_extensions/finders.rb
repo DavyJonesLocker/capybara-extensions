@@ -1,4 +1,7 @@
+require_relative 'locators'
+
 module CapybaraExtensions::Finders
+  include CapybaraExtensions::Locators
   CapybaraExtensions::ExtensionMethods.concat [:find_article, :find_aside, :find_footer, :find_form, :find_header, :find_list_item, :find_navigation, :find_ordered_list, :find_paragraph, :find_row, :find_section, :find_table, :find_unordered_list, :first_article, :first_aside, :first_footer, :first_form, :first_header, :first_navigation, :first_ordered_list, :first_paragraph, :first_row, :first_section, :first_table, :first_unordered_list, :list_item_number, :row_number]
 
   def find_article(args)
@@ -25,26 +28,9 @@ module CapybaraExtensions::Finders
 
   alias_method :form, :find_form
 
-  def image_locator(options = {})
-    raise "Must pass a hash containing 'src' or 'alt'" unless options.is_a?(Hash) && (options.has_key?(:src) || options.has_key?(:alt))
-    if options[:src] && options[:alt]
-      all(:xpath, "//img[@src='#{options[:src]}' and @alt='#{options[:alt]}']")
-    elsif options[:src]
-      all(:xpath, "//img[@src='#{options[:src]}']")
-    elsif options[:alt]
-      all(:xpath, "//img[@alt='#{options[:alt]}']")
-    end
-  end
-
   def find_image(options = {})
     raise "Must pass a hash containing 'src' or 'alt'" unless options.is_a?(Hash) && (options.has_key?(:src) || options.has_key?(:alt))
-    if options[:src] && options[:alt]
-      find(:xpath, "//img[@src='#{options[:src]}' and @alt='#{options[:alt]}']")
-    elsif options[:src]
-      find(:xpath, "//img[@src='#{options[:src]}']")
-    elsif options[:alt]
-      find(:xpath, "//img[@alt='#{options[:alt]}']")
-    end
+    find(:xpath, "//img#{image_locator(options)}")
   end
 
   def find_header(args)
