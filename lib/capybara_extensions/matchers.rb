@@ -30,10 +30,9 @@ module CapybaraExtensions::Matchers
   # @params options [Hash] the value to match against.
   # @return [Boolean] true if the field value matches.
   #
-  def has_field_value?(locator, options = {})
-    raise "Must pass a hash containing 'of'" unless options.is_a?(Hash) and options.has_key?(:of)
+  def has_field_value?(locator, value)
     synchronize do
-      unless Capybara::Helpers.normalize_whitespace(text).match(Capybara::Helpers.to_regexp(options[:of]))
+      unless Capybara::Helpers.normalize_whitespace(text).match(Capybara::Helpers.to_regexp(value))
         raise Capybara::ExpectationNotMet
       end
     end
@@ -48,9 +47,8 @@ module CapybaraExtensions::Matchers
   # @params options [Hash] the value to match against.
   # @return [Boolean] true if the field value does not match.
   #
-  def has_no_field_value?(locator, options = {})
-    raise "Must pass a hash containing 'of'" unless options.is_a?(Hash) and options.has_key?(:of)
-    !has_field_value?(locator, options)
+  def has_no_field_value?(locator, value)
+    !has_field_value?(locator, value)
   end
 
   # Checks the that the content of a meta tag matches a given value.

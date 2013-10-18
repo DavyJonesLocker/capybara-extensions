@@ -50,21 +50,21 @@ describe '.string' do
   # field_values
   describe '#has_field_value?' do
     it 'returns true when the field has the passed in value' do
-      string.find_form(unique).has_field_value?('name', of: unique).must_equal true
+      string.find_form(unique).has_field_value?('name', unique).must_equal true
     end
 
     it 'returns false when the field does not have the passed in value' do
-      string.find_form(unique).has_field_value?('name', of: multiple).must_equal false
+      string.find_form(unique).has_field_value?('name', multiple).must_equal false
     end
   end
 
   describe '#has_no_field_value?' do
     it 'returns true if the field does not have the passed in value' do
-      string.find_form(unique).has_no_field_value?('name', of: 'John Doh').must_equal true
+      string.find_form(unique).has_no_field_value?('name', 'John Doh').must_equal true
     end
 
     it 'returns false if the field has the passed in value' do
-      string.find_form(unique).has_no_field_value?('name', of: unique).must_equal false
+      string.find_form(unique).has_no_field_value?('name', unique).must_equal false
     end
   end
 
