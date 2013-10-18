@@ -54,7 +54,7 @@ module CapybaraExtensions::Finders
 
   # Find an HTML img based on the src and/or alt values.
   #
-  # @param options [Hash] Must pass a hash containing src and/or alt of the image sought.
+  # @param options [Hash] Must pass a hash containing the src and/or alt of the image sought.
   # @return [Capybara::Element] the found element
   #
   def find_image(options = {})
@@ -304,7 +304,7 @@ module CapybaraExtensions::Finders
 
   private
 
-  # Find an element based on the given arguments
+  # Find an element matching the given arguments
   #
   # @param tag [String] the HTML tag for the element
   # @param args [String] the text used to find the element
@@ -319,9 +319,9 @@ module CapybaraExtensions::Finders
     end
   end
 
-  # Find the first HTML ul on the page matching the given arguments.
+  # Find the first element on the page matching the given arguments.
   #
-  # @param args [String, Object] if passed a string, the text contained within the ul sought; if passed an object, the object whose ul is sought.
+  # @param args [String, Object] if passed a string, the text contained within the element sought; if passed an object, the object whose element is sought.
   # @return [Capybara::Element] the found element.
   #
   def first_element(tag, args)

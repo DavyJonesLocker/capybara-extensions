@@ -1,4 +1,6 @@
+# Locators for xpath.
 module CapybaraExtensions::Locators
+
   def image_locator(options)
     locator = String.new
     locator.concat "[@alt='#{options[:alt]}']" if options[:alt]
