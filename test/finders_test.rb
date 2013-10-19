@@ -1,7 +1,7 @@
 require 'test_helper'
 
 describe '.string' do
-  let(:post) { Post.new(id: 3) }
+  let(:post) { Post.new(3) }
   let(:string) { Capybara.string TestString }
   let(:unique) { 'John Doe' }
   let(:multiple) { 'Jane Doe' }
