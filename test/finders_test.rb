@@ -339,6 +339,8 @@ describe '.string' do
     end
   end
 
+  # image
+  #
   describe '#find_image' do
     let(:image) { 'http://example.com/johndoe' }
 
