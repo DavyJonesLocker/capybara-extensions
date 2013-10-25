@@ -5,8 +5,8 @@ module CapybaraExtensions
   ExtensionMethods = []
 end
 
-require 'capybara_extensions/finders'
-require 'capybara_extensions/matchers'
+require 'capybara-extensions/finders'
+require 'capybara-extensions/matchers'
 
 module Capybara::DSL
   CapybaraExtensions::ExtensionMethods.each do |method|
