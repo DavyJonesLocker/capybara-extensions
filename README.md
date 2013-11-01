@@ -28,6 +28,9 @@ require 'capybara-extensions'
 ## The DSL
 A complete reference of the finders and matchers added by CapybaraExtensions is available at [Rubydoc.info](http://rubydoc.info/github/dockyard/capybara-extensions). You can read more about the library in [this blog post](http://reefpoints.dockyard.com/2013/10/25/capybara-extensions.html).
 
+## Versioning
+This gem follows [semantic versioning](http://semver.org).
+
 ## Contributing
 
 1. Fork it
