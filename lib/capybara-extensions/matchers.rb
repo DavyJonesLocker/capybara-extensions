@@ -24,7 +24,7 @@ module CapybaraExtensions::Matchers
     has_no_selector?(:xpath, "//img#{image_locator(options)}")
   end
 
-  # When scoped to a form, checks that the value of a field matches a given value.
+  # Checks that the value of a field matches a given value. Typically, you'll want to scope this to a form.
   #
   # @params locator [String] the label, name, or id of the field.
   # @params text [String] the text to match against the field value.
@@ -34,7 +34,7 @@ module CapybaraExtensions::Matchers
     find_field(locator).value == text
   end
 
-  # When scoped to a form, checks that the value of a field does not match a given value.
+  # Checks that the value of a field does not match a given value. Typically, you'll want to scope this to a form.
   #
   # @params locator [String] the label, name, or id of the field.
   # @params text [String] the text to match against the field value.
@@ -47,7 +47,7 @@ module CapybaraExtensions::Matchers
   # Checks the that the content of a meta tag matches a given value.
   #
   # @params name [String] the name attribute of the meta tag.
-  # @params options [content] the value of the content attribute to match against.
+  # @params content [String] the value of the content attribute to match against.
   # @return [Boolean] true if the meta tag content matches the name.
   #
   def has_meta_tag?(name, content)
@@ -57,7 +57,7 @@ module CapybaraExtensions::Matchers
   # Checks the that the content of a meta tag does not match a given value.
   #
   # @params name [String] the name attribute of the meta tag.
-  # @params options [content] the value of the content attribute to match against.
+  # @params content [String] the value of the content attribute to match against.
   # @return [Boolean] true if the meta tag content does not match the name.
   #
   def has_no_meta_tag?(name, content)
