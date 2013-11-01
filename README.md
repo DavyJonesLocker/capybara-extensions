@@ -1,6 +1,7 @@
 # CapybaraExtensions
 
-TODO: Write a gem description
+Complements [Capybara](https://github.com/jnicklas/capybara) with
+additional finders and matchers.
 
 ## Installation
 
@@ -16,9 +17,16 @@ Or install it yourself as:
 
     $ gem install capybara-extensions
 
-## Usage
+## Setup
 
-TODO: Write usage instructions here
+Require `capybara-extensions`:
+
+```ruby
+require 'capybara-extensions'
+``` 
+
+## The DSL
+A complete reference of the finders and matchers added by CapybaraExtensions is available at [Rubydoc.info](http://rubydoc.info/github/dockyard/capybara-extensions). You can read more about the library in [this blog post](http://reefpoints.dockyard.com/2013/10/25/capybara-extensions.html).
 
 ## Contributing
 
