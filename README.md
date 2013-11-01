@@ -1,7 +1,6 @@
 # CapybaraExtensions
 
-Complements [Capybara](https://github.com/jnicklas/capybara) with
-additional finders and matchers.
+[Capybara](https://github.com/jnicklas/capybara) has an intuitive API which mimics the language of an actual user. This library extends Capybara's finders and matchers with additional methods for interacting with tables, lists, and list items, as well as many HTML5 elements.
 
 ## Installation
 
@@ -41,5 +40,6 @@ properly submit issues and pull requests.
 ## Legal
 
 [DockYard, Inc](http://dockyard.com) © 2013
+
 Licensed under the [MIT
 license](http://www.opensource.org/licenses/mit-license.php).
