@@ -286,16 +286,16 @@ module CapybaraExtensions::Finders
 
   # When scoped to an ol or ul, find the first HTML li on the page matching the given arguments.
   #
-  # @param args [String, Object] if passed a string, the text contained within the li sought; if passed an object, the object whose li is sought.
+  # @param number [Integer] the nth li element sought.
   # @return [Capybara::Element] the found element.
   #
   def list_item_number(number)
     all('li')[number.to_i - 1]
   end
 
-  # When scoped to a table or tbody, find the first HTML tr on the page matching the given arguments.
+  # When scoped to a table, find the first HTML tr on the page matching the given arguments.
   #
-  # @param args [String, Object] if passed a string, the text contained within the tr sought; if passed an object, the object whose tr is sought.
+  # @param number [Integer] the nth tr element sought 
   # @return [Capybara::Element] the found element.
   #
   def row_number(number)

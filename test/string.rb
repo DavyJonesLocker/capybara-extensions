@@ -181,15 +181,19 @@ TestString =  <<-STRING
     <form class='post' id='post_1'>
       John Doe
       <input id='name' value='John Doe'>
+      <input id='email' value='john@example.com'>
     </form>
 
     <form class='post' id='post_2'>
       Jane Doe
       <input id='name' value='Jane Doe'>
+      <input id='email' value='jane@example.com'>
     </form>
 
     <form class='post' id='post_3'>
       Jane Doe
+      <input id='name' value='Jane Doe'>
+      <input id='email' value='jane@example.com'>
     </form>
 
     <img src='http://example.com/johndoe' alt='John Doe'/>

@@ -27,28 +27,21 @@ module CapybaraExtensions::Matchers
   # When scoped to a form, checks that the value of a field matches a given value.
   #
   # @params locator [String] the label, name, or id of the field.
-  # @params options [Hash] the value to match against.
+  # @params text [String] the text to match against the field value.
   # @return [Boolean] true if the field value matches.
   #
-  def has_field_value?(locator, value)
-    synchronize do
-      unless Capybara::Helpers.normalize_whitespace(text).match(Capybara::Helpers.to_regexp(value))
-        raise Capybara::ExpectationNotMet
-      end
-    end
-    return true
-  rescue Capybara::ExpectationNotMet
-    return false
+  def has_field_value?(locator, text)
+    find_field(locator).value == text
   end
 
   # When scoped to a form, checks that the value of a field does not match a given value.
   #
   # @params locator [String] the label, name, or id of the field.
-  # @params options [Hash] the value to match against.
+  # @params text [String] the text to match against the field value.
   # @return [Boolean] true if the field value does not match.
   #
-  def has_no_field_value?(locator, value)
-    !has_field_value?(locator, value)
+  def has_no_field_value?(locator, text)
+    !has_field_value?(locator, text)
   end
 
   # Checks the that the content of a meta tag matches a given value.

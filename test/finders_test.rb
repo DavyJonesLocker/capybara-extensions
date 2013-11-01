@@ -134,7 +134,7 @@ describe '.string' do
   end
 
   describe '#row_number' do
-    it 'returns the row of the number passed in' do
+    it 'returns the row of the number passed in when scoped to a table' do
       string.find_table('Jane Doe').row_number(1).text.must_have_content 'The first post title'
       string.find_table('Jane Doe').row_number(1).text.wont_have_content 'The second post title'
       string.find_table('Jane Doe').row_number(2).text.must_have_content 'The second post title'
