@@ -20,10 +20,11 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'builder'
   spec.add_development_dependency 'bundler', '~> 1.3'
   spec.add_development_dependency 'byebug'
-  spec.add_development_dependency 'capybara', '~> 2.1.0'
   spec.add_development_dependency 'capybara_minitest_spec'
   spec.add_development_dependency 'minitest', '< 5.0'
   spec.add_development_dependency 'minitest-reporters', '~> 0.14.21'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'yard'
+
+  spec.add_runtime_dependency 'capybara', '~> 2.1.0'
 end
