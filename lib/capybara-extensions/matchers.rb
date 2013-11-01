@@ -6,7 +6,7 @@ module CapybaraExtensions::Matchers
 
   # Checks that the current node has an image with the given src or alt.
   #
-  # @params options [Hash] must pass a hash containing src and/or alt to match against.
+  # @param options [Hash] must pass a hash containing src and/or alt to match against.
   # @return [Boolean] true if the image matches.
   #
   def has_image?(options = {})
@@ -16,7 +16,7 @@ module CapybaraExtensions::Matchers
 
   # Checks that the current node does not have an image with the given src or alt.
   #
-  # @params options [Hash] must pass a hash containing src and/or alt to match against.
+  # @param options [Hash] must pass a hash containing src and/or alt to match against.
   # @return [Boolean] true if the image does not match.
   #
   def has_no_image?(options = {})
@@ -26,8 +26,8 @@ module CapybaraExtensions::Matchers
 
   # Checks that the value of a field matches a given value. Typically, you'll want to scope this to a form.
   #
-  # @params locator [String] the label, name, or id of the field.
-  # @params text [String] the text to match against the field value.
+  # @param locator [String] the label, name, or id of the field.
+  # @param text [String] the text to match against the field value.
   # @return [Boolean] true if the field value matches.
   #
   def has_field_value?(locator, text)
@@ -36,8 +36,8 @@ module CapybaraExtensions::Matchers
 
   # Checks that the value of a field does not match a given value. Typically, you'll want to scope this to a form.
   #
-  # @params locator [String] the label, name, or id of the field.
-  # @params text [String] the text to match against the field value.
+  # @param locator [String] the label, name, or id of the field.
+  # @param text [String] the text to match against the field value.
   # @return [Boolean] true if the field value does not match.
   #
   def has_no_field_value?(locator, text)
@@ -46,8 +46,8 @@ module CapybaraExtensions::Matchers
 
   # Checks the that the content of a meta tag matches a given value.
   #
-  # @params name [String] the name attribute of the meta tag.
-  # @params content [String] the value of the content attribute to match against.
+  # @param name [String] the name attribute of the meta tag.
+  # @param content [String] the value of the content attribute to match against.
   # @return [Boolean] true if the meta tag content matches the name.
   #
   def has_meta_tag?(name, content)
@@ -56,8 +56,8 @@ module CapybaraExtensions::Matchers
 
   # Checks the that the content of a meta tag does not match a given value.
   #
-  # @params name [String] the name attribute of the meta tag.
-  # @params content [String] the value of the content attribute to match against.
+  # @param name [String] the name attribute of the meta tag.
+  # @param content [String] the value of the content attribute to match against.
   # @return [Boolean] true if the meta tag content does not match the name.
   #
   def has_no_meta_tag?(name, content)

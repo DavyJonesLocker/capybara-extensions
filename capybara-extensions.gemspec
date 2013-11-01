@@ -25,4 +25,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'minitest', '< 5.0'
   spec.add_development_dependency 'minitest-reporters', '~> 0.14.21'
   spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'yard'
 end
