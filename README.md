@@ -26,15 +26,20 @@ require 'capybara-extensions'
 ``` 
 
 ## The DSL
+
 A complete reference of the finders and matchers added by CapybaraExtensions is available at [Rubydoc.info](http://rubydoc.info/github/dockyard/capybara-extensions). You can read more about the library in [this blog post](http://reefpoints.dockyard.com/2013/10/25/capybara-extensions.html).
 
 ## Versioning
+
 This gem follows [semantic versioning](http://semver.org).
 
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Please see our [contribution guidelines](/CONTRIBUTING.md) on how to
+properly submit issues and pull requests.
+
+## Legal
+
+[DockYard, Inc](http://dockyard.com) © 2013
+Licensed under the [MIT
+license](http://www.opensource.org/licenses/mit-license.php).
