@@ -53,8 +53,10 @@ describe '.string' do
       string.find_form(unique).has_field_value?('name', unique).must_equal true
     end
 
-    it 'returns false when the field does not have the passed in value' do
-      string.find_form(unique).has_field_value?('name', multiple).must_equal false
+    it 'fails if has_field_value? returns false' do
+      assert_raises(Capybara::ExpectationNotMet) do
+        string.find_form(unique).has_field_value?(:name, multiple)
+      end.must_have_content 'expected to find field name with a value of Jane Doe.'
     end
   end
 
@@ -63,8 +65,10 @@ describe '.string' do
       string.find_form(unique).has_no_field_value?('name', 'John Doh').must_equal true
     end
 
-    it 'returns false if the field has the passed in value' do
-      string.find_form(unique).has_no_field_value?('name', unique).must_equal false
+    it 'fails if has_no_field_value? returns false' do
+      assert_raises(Capybara::ExpectationNotMet) do
+        string.find_form(unique).has_no_field_value?('name', unique)
+      end.must_have_content 'expected to not find field name with a value of John Doe.'
     end
   end
 

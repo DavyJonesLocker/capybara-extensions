@@ -31,9 +31,11 @@ module CapybaraExtensions::Matchers
   # @return [Boolean] true if the field value matches.
   #
   def has_field_value?(locator, text)
-    find_field(locator).value == text
-  rescue Capybara::ExpectationNotMet
-    return false
+    if find_field(locator).value == text
+      true
+    else
+      raise Capybara::ExpectationNotMet, "expected to find field #{locator} with a value of #{text}."
+    end
   end
 
   # Checks that the value of a field does not match a given value. Typically, you'll want to scope this to a form.
@@ -43,9 +45,11 @@ module CapybaraExtensions::Matchers
   # @return [Boolean] true if the field value does not match.
   #
   def has_no_field_value?(locator, text)
-    !has_field_value?(locator, text)
-  rescue Capybara::ExpectationNotMet
-    return false
+    if find_field(locator).value != text
+      true
+    else
+      raise Capybara::ExpectationNotMet, "expected to not find field #{locator} with a value of #{text}."
+    end
   end
 
   # Checks the that the content of a meta tag matches a given value.
