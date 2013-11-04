@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["michael.dupuis@dockyard.com", 'rubygems@danmcclain.net']
   spec.description   = %q{Complements Capybara with additional finders and matchers.}
   spec.summary       = %q{Capybara has an intuitive API which mimics the language of an actual user. This library extends Capybara's finders and matchers with additional methods for interacting with tables, lists, and list items, as well as many HTML5 elements.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/dockyard/capybara-extensions"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
