@@ -38,8 +38,16 @@ describe '.string' do
       string.has_no_image?(alt: multiple).must_equal true
     end
 
+    it 'returns false if there is an image with the alt' do
+      string.has_no_image?(alt: unique).must_equal false
+    end
+
     it 'returns true if there is no image with the src' do
       string.has_no_image?(src: 'http://example.com/johndoh').must_equal true
+    end
+
+    it 'returns false if there is an image with the src' do
+      string.has_no_image?(src: 'http://example.com/johndoe').must_equal false
     end
 
     it 'returns true if there is no image with an alt and a src with the arguments' do
@@ -53,8 +61,10 @@ describe '.string' do
       string.find_form(unique).has_field_value?('name', unique).must_equal true
     end
 
-    it 'returns false when the field does not have the passed in value' do
-      string.find_form(unique).has_field_value?('name', multiple).must_equal false
+    it 'fails if has_field_value? returns false' do
+      assert_raises(Capybara::ExpectationNotMet) do
+        string.find_form(unique).has_field_value?(:name, multiple)
+      end.must_have_content 'expected to find field name with a value of Jane Doe.'
     end
   end
 
@@ -63,8 +73,10 @@ describe '.string' do
       string.find_form(unique).has_no_field_value?('name', 'John Doh').must_equal true
     end
 
-    it 'returns false if the field has the passed in value' do
-      string.find_form(unique).has_no_field_value?('name', unique).must_equal false
+    it 'fails if has_no_field_value? returns false' do
+      assert_raises(Capybara::ExpectationNotMet) do
+        string.find_form(unique).has_no_field_value?('name', unique)
+      end.must_have_content 'expected to not find field name with a value of John Doe.'
     end
   end
 
