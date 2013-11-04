@@ -9,7 +9,19 @@ module CapybaraExtensions::Locators
   def image_locator(options)
     locator = String.new
     locator.concat "[@alt='#{options[:alt]}']" if options[:alt]
-    locator.concat "[@src='#{options[:src]}']" if options[:src]
+
+    if options[:src]
+      if Regexp === options[:src]
+        if image = find_image_with_regex(options[:src])
+          locator.concat("[@src='#{image}']")
+        else
+          return false
+        end
+      else options[:src]
+        locator.concat "[@src='#{options[:src]}']"
+      end
+    end
+
     locator
   end
 
@@ -24,5 +36,18 @@ module CapybaraExtensions::Locators
     locator.concat "[@name='#{name}']"
     locator.concat "[@content='#{content}']"
     locator
+  end
+
+  private
+
+  def find_image_with_regex(src)
+    all_images = all('img')
+    all_images.each do |image|
+      if image.native.attributes['src'].value.match(src).nil?
+        return nil
+      else
+        return image.native.attributes['src'].value
+      end
+    end
   end
 end

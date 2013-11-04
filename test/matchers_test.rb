@@ -18,6 +18,8 @@ describe '.string' do
 
     it 'returns true if the image has an src with the argument' do
       string.has_image?(src: 'http://example.com/johndoe').must_equal true
+      string.has_image?(src: /johndo/).must_equal true
+      string.has_image?(src: /johndoh/).must_equal false
     end
 
     it 'returns false if the image does not have an src with the argument' do
