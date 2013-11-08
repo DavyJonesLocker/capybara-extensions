@@ -352,6 +352,8 @@ describe '.string' do
     end
 
     it 'returns ElementNotFound when passed invalid src or alt' do
+      assert_raises(Capybara::ElementNotFound) { string.find_image(src: 'http://example.com/johndoe', alt: 'John Doh') }
+      assert_raises(Capybara::ElementNotFound) { string.find_image(src: 'http://example.com/johndoh', alt: 'John Doe') }
       assert_raises(Capybara::ElementNotFound) { string.find_image(src: 'http://example.com/johndoh') }
       assert_raises(Capybara::ElementNotFound) { string.find_image(alt: 'John Doh') }
       assert_raises(Capybara::ElementNotFound) { string.find_image(src: /johndoh/) }
