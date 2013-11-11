@@ -6,7 +6,7 @@ module CapybaraExtensions::Matchers
 
   # Checks that the current node has an image with the given src or alt.
   #
-  # @param options [Hash] must pass a hash containing src and/or alt to match against.
+  # @param options [Hash] must pass a hash containing src and/or alt to match against. You may pass a Regexp with src.
   # @return [Boolean] true if the image matches.
   #
   def has_image?(options = {})

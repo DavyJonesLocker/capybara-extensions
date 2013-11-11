@@ -54,7 +54,7 @@ module CapybaraExtensions::Finders
 
   # Find an HTML img based on the src and/or alt values.
   #
-  # @param options [Hash] Must pass a hash containing the src and/or alt of the image sought.
+  # @param options [Hash] Must pass a hash containing the src and/or alt of the image sought. You may pass a Regexp with src; however, this should be done sparingly, as CapybaraExtensions::Locators#image_locator will find and iterate over all images in the current scope.
   # @return [Capybara::Element] the found element
   #
   def find_image(options = {})
