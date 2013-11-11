@@ -2,7 +2,6 @@ require_relative 'locators'
 
 module CapybaraExtensions::Matchers
   include CapybaraExtensions::Locators
-  CapybaraExtensions::ExtensionMethods.concat [:has_field_value?, :has_no_field_value?, :has_image?, :has_no_image?, :has_meta_tag?, :has_no_meta_tag?]
 
   # Checks that the current node has an image with the given src or alt.
   #
