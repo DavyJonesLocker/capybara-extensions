@@ -2,7 +2,6 @@ require_relative 'locators'
 
 module CapybaraExtensions::Finders
   include CapybaraExtensions::Locators
-  CapybaraExtensions::ExtensionMethods.concat [:find_article, :find_aside, :find_footer, :find_form, :find_header, :find_list_item, :find_navigation, :find_ordered_list, :find_paragraph, :find_row, :find_section, :find_table, :find_unordered_list, :first_article, :first_aside, :first_footer, :first_form, :first_header, :first_navigation, :first_ordered_list, :first_paragraph, :first_row, :first_section, :first_table, :first_unordered_list, :list_item_number, :row_number]
 
   # Find an HTML article based on the given arguments.
   #

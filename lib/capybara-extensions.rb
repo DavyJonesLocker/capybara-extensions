@@ -2,14 +2,16 @@ require 'capybara'
 require 'capybara_minitest_spec'
 
 module CapybaraExtensions
-  ExtensionMethods = []
+  def self.extension_methods
+    (CapybaraExtensions::Finders.instance_methods + CapybaraExtensions::Matchers.instance_methods - Object.instance_methods).uniq
+  end
 end
 
 require 'capybara-extensions/finders'
 require 'capybara-extensions/matchers'
 
 module Capybara::DSL
-  CapybaraExtensions::ExtensionMethods.each do |method|
+  CapybaraExtensions.extension_methods.each do |method|
     define_method method do |*args, &block|
       page.send method, *args, &block
     end
@@ -17,7 +19,7 @@ module Capybara::DSL
 end
 
 class Capybara::Session
-  CapybaraExtensions::ExtensionMethods.each do |method|
+  CapybaraExtensions::extension_methods.each do |method|
     define_method method do |*args, &block|
       current_scope.send method, *args, &block
     end
