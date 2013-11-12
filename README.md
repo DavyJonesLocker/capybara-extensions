@@ -1,5 +1,6 @@
 # CapybaraExtensions
 
+[![Gem Version](https://badge.fury.io/rb/capybara-extensions.png)](http://badge.fury.io/rb/capybara-extensions)
 [![Build Status](https://travis-ci.org/dockyard/capybara-extensions.png?branch=master)](https://travis-ci.org/dockyard/capybara-extensions)
 
 [Capybara](https://github.com/jnicklas/capybara) has an intuitive API which mimics the language of an actual user. This library extends Capybara's finders and matchers with additional methods for interacting with tables, lists, and list items, as well as many HTML5 elements.
@@ -28,7 +29,7 @@ require 'capybara-extensions'
 
 ## The DSL
 
-A complete reference of the finders and matchers added by CapybaraExtensions is available at [Rubydoc.info](http://rubydoc.info/github/dockyard/capybara-extensions). You can read more about the library in [this blog post](http://reefpoints.dockyard.com/2013/11/11/capybara-extensions.html).
+A complete reference of the finders and matchers added by CapybaraExtensions is available at [Rubydoc.info](http://rubydoc.info/gems/capybara-extensions/frames). You can read more about the library in [this blog post](http://reefpoints.dockyard.com/2013/11/11/capybara-extensions.html).
 
 ## Versioning
 
