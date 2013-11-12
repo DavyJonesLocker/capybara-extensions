@@ -1,5 +1,7 @@
 # CapybaraExtensions
 
+[![Build Status](https://travis-ci.org/dockyard/capybara-extensions.png?branch=master)](https://travis-ci.org/dockyard/capybara-extensions)
+
 [Capybara](https://github.com/jnicklas/capybara) has an intuitive API which mimics the language of an actual user. This library extends Capybara's finders and matchers with additional methods for interacting with tables, lists, and list items, as well as many HTML5 elements.
 
 ## Installation
@@ -22,7 +24,7 @@ Require `capybara-extensions`:
 
 ```ruby
 require 'capybara-extensions'
-``` 
+```
 
 ## The DSL
 
