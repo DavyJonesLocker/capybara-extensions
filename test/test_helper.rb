@@ -1,5 +1,6 @@
 require 'byebug'
 require 'capybara-extensions'
+require 'capybara_minitest_spec'
 require 'minitest/autorun'
 require 'minitest/reporters'
 

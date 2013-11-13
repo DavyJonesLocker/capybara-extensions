@@ -1,5 +1,4 @@
 require 'capybara'
-require 'capybara_minitest_spec'
 
 module CapybaraExtensions
   def self.extension_methods
