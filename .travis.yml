@@ -2,3 +2,10 @@ language: ruby
 rvm:
 - 2.0.0
 cache: bundler
+
+notifications:
+  hipchat:
+    rooms:
+      secure: Y2vwGdS1AlZXgzSlE/TaUfL/yY33JewipRE8pUbXkcizu9GFAuNpv9DDL/p+GijWKdl0U2Lo4GiXiUhqky1NHMa3hU1kairq1djYJrRWEhT9nj3qfjqGvX8sl5YmiBSWjv+4o91K6IdIxcJ9/sLMQU02Lp4ABgIQJqtSUhEciAY=
+    template:
+      - '@all %{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message}'
