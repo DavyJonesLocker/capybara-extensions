@@ -3,8 +3,12 @@ require 'test_helper'
 describe '.string' do
   let(:post) { Post.new(3) }
   let(:string) { Capybara.string TestString }
-  let(:unique) { 'John Doe' }
+
+  let(:first_occurrence) { 'John Doe' }
+  let(:last_occurrence) { 'Jane Doe' }
+
   let(:multiple) { 'Jane Doe' }
+  let(:unique) { 'John Doe' }
 
   # Finders
   # article
@@ -30,6 +34,11 @@ describe '.string' do
       string.first_article(multiple).text.must_have_content multiple
       string.first_article(multiple).text.wont_have_content unique
     end
+
+    it 'should find the first article when no args are passed in' do
+      string.first_article.must_have_content first_occurrence
+      string.first_article.wont_have_content last_occurrence
+    end
   end
 
 
@@ -52,9 +61,16 @@ describe '.string' do
   end
 
   describe '#list_item_number' do
+    let(:ul) { string.find_unordered_list('foo') }
+
     it 'return the list item of the number passed in to an ol' do
-      string.find_unordered_list('foo').list_item_number(2).must_have_content 'bar'
-      string.find_unordered_list('foo').list_item_number(2).wont_have_content 'foo'
+      ul.list_item_number(2).must_have_content 'bar'
+      ul.list_item_number(2).wont_have_content 'foo'
+    end
+
+    it 'returns the list item fo the negative number passed in to an ol' do
+      ul.list_item_number(-1).must_have_content 'bar'
+      ul.list_item_number(-3).must_have_content 'foo'
     end
   end
 
@@ -81,6 +97,11 @@ describe '.string' do
       string.first_ordered_list(multiple).text.must_have_content multiple
       string.first_ordered_list(multiple).text.wont_have_content unique
     end
+
+    it 'should find the first ordered list when no args are passed in' do
+      string.first_ordered_list.must_have_content first_occurrence
+      string.first_ordered_list.wont_have_content last_occurrence
+    end
   end
 
   # ul
@@ -106,6 +127,11 @@ describe '.string' do
       string.first_unordered_list(multiple).text.must_have_content multiple
       string.first_unordered_list(multiple).text.wont_have_content unique
     end
+
+    it 'finds the first unordered list when no args are passed in' do
+      string.first_unordered_list.must_have_content first_occurrence
+      string.first_unordered_list.wont_have_content last_occurrence
+    end
   end
 
   # tr
@@ -127,18 +153,33 @@ describe '.string' do
   end
 
   describe '#first_row' do
-    it 'finds the first nav when passed a non-unique string' do
+    it 'finds the first row when passed a non-unique string' do
       string.first_row(multiple).text.must_have_content multiple
       string.first_row(multiple).text.wont_have_content unique
+    end
+
+    it 'should find the first row when no args are passed in' do
+      string.first_row.must_have_content 'Author'
+      string.first_row.wont_have_content first_occurrence
+      string.first_row.wont_have_content last_occurrence
     end
   end
 
   describe '#row_number' do
+    let(:tbody) { string.find_table('Jane Doe').find('tbody') }
+
     it 'returns the row of the number passed in when scoped to a table' do
-      string.find_table('Jane Doe').row_number(1).text.must_have_content 'The first post title'
-      string.find_table('Jane Doe').row_number(1).text.wont_have_content 'The second post title'
-      string.find_table('Jane Doe').row_number(2).text.must_have_content 'The second post title'
-      string.find_table('Jane Doe').row_number(2).text.wont_have_content 'The first post title'
+      tbody.row_number(1).text.must_have_content 'The first post title'
+      tbody.row_number(1).text.wont_have_content 'The second post title'
+      tbody.row_number(2).text.must_have_content 'The second post title'
+      tbody.row_number(2).text.wont_have_content 'The first post title'
+    end
+
+    it 'returns the row from the end of the table when passed a negative number' do
+      tbody.row_number(-1).text.must_have_content 'The second post title'
+      tbody.row_number(-1).text.wont_have_content 'The first post title'
+      tbody.row_number(-2).text.must_have_content 'The first post title'
+      tbody.row_number(-2).text.wont_have_content 'The second post title'
     end
   end
 
@@ -164,6 +205,11 @@ describe '.string' do
     it 'finds the first paragraph containing a string' do
       string.first_paragraph(multiple).text.must_have_content multiple
       string.first_paragraph(multiple).text.wont_have_content unique
+    end
+
+    it 'should find the first paragraph when no args are passed in' do
+      string.first_paragraph.must_have_content first_occurrence
+      string.first_paragraph.wont_have_content last_occurrence
     end
   end
 
@@ -193,6 +239,11 @@ describe '.string' do
       string.first_table(multiple).text.must_have_content multiple
       string.first_table(multiple).text.wont_have_content unique
     end
+
+    it 'finds the first table when no args are passed in' do
+      string.first_table.must_have_content first_occurrence
+      string.first_table.wont_have_content last_occurrence
+    end
   end
 
 
@@ -219,6 +270,11 @@ describe '.string' do
       string.first_navigation(multiple).text.must_have_content multiple
       string.first_navigation(multiple).text.wont_have_content unique
     end
+
+    it 'should find the first navigation when no args are passed in' do
+      string.first_navigation.must_have_content first_occurrence
+      string.first_navigation.wont_have_content last_occurrence
+    end
   end
 
   # section
@@ -236,6 +292,18 @@ describe '.string' do
       string.find_section(post).text.wont_have_content multiple
       string.section(post).text.must_have_content unique
       string.section(post).text.wont_have_content multiple
+    end
+  end
+
+  describe '#first_section' do
+    it 'finds the first section when passed a non-unique string' do
+      string.first_header(multiple).text.must_have_content multiple
+      string.first_header(multiple).text.wont_have_content unique
+    end
+
+    it 'finds the first section when no args are passed in' do
+      string.first_section.must_have_content first_occurrence
+      string.first_section.wont_have_content last_occurrence
     end
   end
 
@@ -262,6 +330,11 @@ describe '.string' do
       string.first_header(multiple).text.must_have_content multiple
       string.first_header(multiple).text.wont_have_content unique
     end
+
+    it 'should find the first header when no args are passed in' do
+      string.first_footer.must_have_content first_occurrence
+      string.first_footer.wont_have_content last_occurrence
+    end
   end
 
   # footer
@@ -286,6 +359,11 @@ describe '.string' do
     it 'finds the first footer when passed a non-unique string' do
       string.first_footer(multiple).text.must_have_content multiple
       string.first_footer(multiple).text.wont_have_content unique
+    end
+
+    it 'should find the first footer when no args are passed in' do
+      string.first_footer.must_have_content first_occurrence
+      string.first_footer.wont_have_content last_occurrence
     end
   end
 
@@ -312,6 +390,11 @@ describe '.string' do
       string.first_aside(multiple).text.must_have_content multiple
       string.first_aside(multiple).text.wont_have_content unique
     end
+
+    it 'should find the first aside when no args are passed in' do
+      string.first_aside.must_have_content first_occurrence
+      string.first_aside.wont_have_content last_occurrence
+    end
   end
 
   # form
@@ -336,6 +419,11 @@ describe '.string' do
     it 'finds the first form when passed a non-unique string' do
       string.first_form(multiple).text.must_have_content multiple
       string.first_form(multiple).text.wont_have_content unique
+    end
+
+    it 'should find the first form when no args are passed in' do
+      string.first_form.must_have_content first_occurrence
+      string.first_form.wont_have_content last_occurrence
     end
   end
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+* Updates the `#first_` method so that when no argument is passed the
+  first occurrence of the element is found.
+
 ## 0.3.4
 * Adds `capybara, ~> 2.2.0` as a runtime dependency.
 * Fixes the calling of `CapybaraExtensions.extension_methods` when defining

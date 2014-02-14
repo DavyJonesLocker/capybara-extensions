@@ -48,11 +48,12 @@ within form('Login') do
 end
 ```
 
-Each `find` method also has a corresponding `first` method. So when you have multiple article elements on a page with the text 'Lorem ipsum,' you can call `first_article('Lorem ipsum')` without returning an ambiguous match in Capybara.
+Each `find` method also has a corresponding `first` method. So when you have multiple article elements on a page with the text 'Lorem ipsum,' you can call `first_article('Lorem ipsum')` without returning an ambiguous match in Capybara. If you don't supply an argument to `#first_article`, it will return the first article regardless of the article's content.
 
 In instances when you have lists or tables and you'd like to verify the content of a specific `li` or `tr`, `CapybaraExtensions` allows you to target the nth occurence of the element via `#list_item_number` and `#row_number`.
 
 So given the following HTML:
+
 ```html
 <ul>
   <li>John Doe</li>
@@ -62,6 +63,7 @@ So given the following HTML:
 ```
 
 You can find the second li with:
+
 ```ruby
 list_item_number(2) # => 'Jane Doe'
 ```
@@ -97,7 +99,7 @@ Please see our [contribution guidelines](/CONTRIBUTING.md) on how to
 properly submit issues and pull requests.
 
 ## Legal
-[DockYard, Inc](http://dockyard.com) © 2013
+[DockYard, Inc](http://dockyard.com) © 2014
 
 Licensed under the [MIT
 license](http://www.opensource.org/licenses/mit-license.php).

@@ -36,31 +36,25 @@ TestString =  <<-STRING
         </tr>
       </thead>
       <tbody>
-    <tr class="post" id="post_1">
-      <td>Jane Doe</td>
-      <td>The first post title</td>
-      <td>Suspendisse id purus quis augue consequat varius ut eget diam. Donec ut lacus vestibulum, porttitor nulla porta, convallis ligula. Nunc sodales venenatis sapien sit amet consequat.</td>
-      <td><a href="/posts/1">Show</a></td>
-      <td><a href="/posts/1/edit">Edit</a></td>
-      <td><a data-confirm="Are you sure?" data-method="delete" href="/posts/1" rel="nofollow">Destroy</a></td>
-    </tr>
-    <tr class="post" id="post_2">
-      <td>Jane Doe</td>
-      <td>The second post title</td>
-      <td>Donec iaculis ultricies orci id consequat. Etiam varius dignissim tincidunt. Sed in lacinia augue. Proin ullamcorper quam at tincidunt consectetur.</td>
-      <td><a href="/posts/2">Show</a></td>
-      <td><a href="/posts/2/edit">Edit</a></td>
-      <td><a data-confirm="Are you sure?" data-method="delete" href="/posts/2" rel="nofollow">Destroy</a></td>
-    </tr>
+        <tr class="post" id="post_1">
+          <td>Jane Doe</td>
+          <td>The first post title</td>
+          <td>Suspendisse id purus quis augue consequat varius ut eget diam. Donec ut lacus vestibulum, porttitor nulla porta, convallis ligula. Nunc sodales venenatis sapien sit amet consequat.</td>
+          <td><a href="/posts/1">Show</a></td>
+          <td><a href="/posts/1/edit">Edit</a></td>
+          <td><a data-confirm="Are you sure?" data-method="delete" href="/posts/1" rel="nofollow">Destroy</a></td>
+        </tr>
+        <tr class="post" id="post_2">
+          <td>Jane Doe</td>
+          <td>The second post title</td>
+          <td>Donec iaculis ultricies orci id consequat. Etiam varius dignissim tincidunt. Sed in lacinia augue. Proin ullamcorper quam at tincidunt consectetur.</td>
+          <td><a href="/posts/2">Show</a></td>
+          <td><a href="/posts/2/edit">Edit</a></td>
+          <td><a data-confirm="Are you sure?" data-method="delete" href="/posts/2" rel="nofollow">Destroy</a></td>
+        </tr>
       </tbody>
     </table>
 
-
-    <ul>
-      <li class='post' id='post_3'>foo</li>
-      <li class='post' id='post_2'>bar</li>
-      <li class='post' id='post_1'>bar</li>
-    </ul>
 
 
     <ul class='posts' id='post_3'>
@@ -74,6 +68,13 @@ TestString =  <<-STRING
     <ul class='posts' id='post_1'>
       Jane Doe
     </ul>
+
+    <ul>
+      <li class='post' id='post_3'>foo</li>
+      <li class='post' id='post_2'>bar</li>
+      <li class='post' id='post_1'>bar</li>
+    </ul>
+
 
 
     <ol class='posts' id='post_3'>

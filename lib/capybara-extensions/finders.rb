@@ -174,112 +174,112 @@ module CapybaraExtensions::Finders
 
   alias_method :unordered_list, :find_unordered_list
 
-  # Find the first HTML article on the page matching the given arguments.
+  # Find the first HTML article on the page matching the given arguments. If no arguments are supplied, it will find the first article within your current scope.
   #
   # @param args [String] text contained within the article sought.
   # @param args [Object] the object whose article is sought.
   # @return [Capybara::Element] the found element.
   #
-  def first_article(args)
+  def first_article(args=nil)
     first_element('article', args)
   end
 
-  # Find the first HTML aside on the page matching the given arguments.
+  # Find the first HTML aside on the page matching the given arguments. If no arguments are supplied, it will find the first aside within your current scope.
   #
   # @param args [String, Object] if passed a string, the text contained within the aside sought; if passed an object, the object whose aside is sought.
   # @return [Capybara::Element] the found element.
   #
-  def first_aside(args)
+  def first_aside(args=nil)
     first_element('aside', args)
   end
 
-  # Find the first HTML footer on the page matching the given arguments.
+  # Find the first HTML footer on the page matching the given arguments. If no arguments are supplied, it will find the first footer within your current scope.
   #
   # @param args [String, Object] if passed a string, the text contained within the footer sought; if passed an object, the object whose footer is sought.
   # @return [Capybara::Element] the found element.
   #
-  def first_footer(args)
+  def first_footer(args=nil)
     first_element('footer', args)
   end
 
-  # Find the first HTML form on the page matching the given arguments.
+  # Find the first HTML form on the page matching the given arguments. If no arguments are supplied, it will find the first form within your current scope.
   #
   # @param args [String, Object] if passed a string, the text contained within the form sought; if passed an object, the object whose form is sought.
   # @return [Capybara::Element] the found element.
   #
-  def first_form(args)
+  def first_form(args=nil)
     first_element('form', args)
   end
 
-  # Find the first HTML header on the page matching the given arguments.
+  # Find the first HTML header on the page matching the given arguments. If no arguments are supplied, it will find the first header within your current scope.
   #
   # @param args [String, Object] if passed a string, the text contained within the header sought; if passed an object, the object whose header is sought.
   # @return [Capybara::Element] the found element.
   #
-  def first_header(args)
+  def first_header(args=nil)
     first_element('header', args)
   end
 
-  # Find the first HTML nav on the page matching the given arguments.
+  # Find the first HTML nav on the page matching the given arguments. If no arguments are supplied, it will find the first nav within your current scope.
   #
   # @param args [String, Object] if passed a string, the text contained within the nav sought; if passed an object, the object whose nav is sought.
   # @return [Capybara::Element] the found element.
   #
-  def first_navigation(args)
+  def first_navigation(args=nil)
     first_element('nav', args)
   end
 
-  # Find the first HTML ol on the page matching the given arguments.
+  # Find the first HTML ol on the page matching the given arguments. If no arguments are supplied, it will find the first ol within your current scope.
   #
   # @param args [String, Object] if passed a string, the text contained within the ol sought; if passed an object, the object whose ol is sought.
   # @return [Capybara::Element] the found element.
   #
-  def first_ordered_list(args)
+  def first_ordered_list(args=nil)
     first_element('ol', args)
   end
 
-  # Find the first HTML p on the page matching the given arguments.
+  # Find the first HTML p on the page matching the given arguments. If no arguments are supplied, it will find the first p within your current scope.
   #
   # @param args [String, Object] if passed a string, the text contained within the p sought; if passed an object, the object whose p is sought.
   # @return [Capybara::Element] the found element.
   #
-  def first_paragraph(args)
+  def first_paragraph(args=nil)
     first_element('p', args)
   end
 
-  # Find the first HTML tr on the page matching the given arguments.
+  # Find the first HTML tr on the page matching the given arguments. If no arguments are supplied, it will find the first tr within your current scope.
   #
   # @param args [String, Object] if passed a string, the text contained within the tr sought; if passed an object, the object whose tr is sought.
   # @return [Capybara::Element] the found element.
   #
-  def first_row(args)
+  def first_row(args=nil)
     first_element('tr', args)
   end
 
-  # Find the first HTML section on the page matching the given arguments.
+  # Find the first HTML section on the page matching the given arguments. If no arguments are supplied, it will find the first section within your current scope.
   #
   # @param args [String, Object] if passed a string, the text contained within the section sought; if passed an object, the object whose section is sought.
   # @return [Capybara::Element] the found element.
   #
-  def first_section(args)
+  def first_section(args=nil)
     first_element('section', args)
   end
 
-  # Find the first HTML table on the page matching the given arguments.
+  # Find the first HTML table on the page matching the given arguments. If no arguments are supplied, it will find the first table within your current scope.
   #
   # @param args [String, Object] if passed a string, the text contained within the table sought; if passed an object, the object whose table is sought.
   # @return [Capybara::Element] the found element.
   #
-  def first_table(args)
+  def first_table(args=nil)
     first_element('table', args)
   end
 
-  # Find the first HTML ul on the page matching the given arguments.
+  # Find the first HTML ul on the page matching the given arguments. If no arguments are supplied, it will find the first unordered list within your current scope.
   #
   # @param args [String, Object] if passed a string, the text contained within the ul sought; if passed an object, the object whose ul is sought.
   # @return [Capybara::Element] the found element.
   #
-  def first_unordered_list(args)
+  def first_unordered_list(args=nil)
     first_element('ul', args)
   end
 
@@ -289,16 +289,16 @@ module CapybaraExtensions::Finders
   # @return [Capybara::Element] the found element.
   #
   def list_item_number(number)
-    all('li')[number.to_i - 1]
+    find_element_by_number('li', number)
   end
 
-  # When scoped to a table, find the first HTML tr on the page matching the given arguments.
+  # When scoped to a table, find the first HTML tr on the page matching the given arguments. If passed a negative number, it will find the first tr from the bottom of the table (so row_number(-1) finds the last row in the table).
   #
   # @param number [Integer] the nth tr element sought 
   # @return [Capybara::Element] the found element.
   #
   def row_number(number)
-    find('tbody').all('tr')[number.to_i - 1]
+    find_element_by_number('tr', number)
   end
 
   private
@@ -318,17 +318,31 @@ module CapybaraExtensions::Finders
     end
   end
 
+  # Find an element by it's nth occurrence
+  #
+  # @param element [String] the HTML tag for the element
+  #
+  def find_element_by_number(tag, number)
+    elements = all(tag)
+    number = number.to_i
+    element_number = number < 0 ? ((elements.length + 1) + number) : number
+    elements[element_number - 1]
+  end
+
+
   # Find the first element on the page matching the given arguments.
   #
-  # @param args [String, Object] if passed a string, the text contained within the element sought; if passed an object, the object whose element is sought.
+  # @param args [String, Object] if passed a string as args, returns the text contained within the element sought; if passed an object, returns the object whose element is sought.
   # @return [Capybara::Element] the found element.
   #
-  def first_element(tag, args)
-    if String === args
+  def first_element(tag, args=nil)
+    if args && String === args
       first(tag, text: args)
-    else
+    elsif args
       klass = args.class.to_s.downcase
       first("#{tag}##{klass}_#{args.id}", "#{tag}.#{klass}")
+    else
+      first("#{tag}")
     end
   end
 end
