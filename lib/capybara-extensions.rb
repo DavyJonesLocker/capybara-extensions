@@ -18,7 +18,7 @@ module Capybara::DSL
 end
 
 class Capybara::Session
-  CapybaraExtensions::extension_methods.each do |method|
+  CapybaraExtensions.extension_methods.each do |method|
     define_method method do |*args, &block|
       current_scope.send method, *args, &block
     end
