@@ -19,7 +19,12 @@ Or install it yourself as:
     $ gem install capybara-extensions
 
 ## Setup
-Require `capybara-extensions`:
+Ensure that Capybara is properly setup inside of your project. You can
+view the Capybara `README.md`
+[here](https://github.com/jnicklas/capybara#setup).
+
+Require `capybara-extensions` (in your test helper file if this is a
+Rails project):
 
 ```ruby
 require 'capybara-extensions'
@@ -50,9 +55,7 @@ end
 
 Each `find` method also has a corresponding `first` method. So when you have multiple article elements on a page with the text 'Lorem ipsum,' you can call `first_article('Lorem ipsum')` without returning an ambiguous match in Capybara. If you don't supply an argument to `#first_article`, it will return the first article regardless of the article's content.
 
-In instances when you have lists or tables and you'd like to verify the content of a specific `li` or `tr`, `CapybaraExtensions` allows you to target the nth occurence of the element via `#list_item_number` and `#row_number`.
-
-So given the following HTML:
+In instances when you have lists or tables and you'd like to verify the content of a specific `li` or `tr`, `CapybaraExtensions` allows you to target the nth occurence of the element via `#list_item_number` and `#row_number`. Counting is 1-based, rather than 0-based, so given the following HTML:
 
 ```html
 <ul>
@@ -68,7 +71,8 @@ You can find the second li with:
 list_item_number(2) # => 'Jane Doe'
 ```
 
-Use these methods for testing how elements are being ordered.
+You can also pass a negative number to these methods, and it will look
+for the nth occurence from the **last** element (be it a `li` or `tr`). Use these methods for testing how elements are being ordered.
 
 ### Matchers
 `CapybaraExtensions` extends Capybara's matchers with methods for verifying the presence of images, the value of input fields, and the presence of meta tags. All of these methods return a boolean.
