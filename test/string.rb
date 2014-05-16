@@ -181,7 +181,9 @@ TestString =  <<-STRING
 
     <form class='post' id='post_1'>
       John Doe
+      <label for='name'>Name</label>
       <input id='name' value='John Doe'>
+      <label for='email'>Email</label>
       <input id='email' value='john@example.com'>
     </form>
 
