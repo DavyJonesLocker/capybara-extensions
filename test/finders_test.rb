@@ -413,6 +413,13 @@ describe '.string' do
       string.form(post).text.must_have_content multiple
       string.find_form(post).text.wont_have_content unique
     end
+
+    it 'finds the form when passed the string of a label' do
+      string.find_form('Name').text.must_have_content unique
+      string.find_form('Name').text.wont_have_content multiple
+      string.form('Name').text.must_have_content unique
+      string.form('Name').text.wont_have_content multiple
+    end
   end
 
   describe '#first_form' do
