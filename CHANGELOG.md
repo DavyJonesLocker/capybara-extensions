@@ -1,4 +1,6 @@
 # Changelog
+## 0.5.0
+* Updates to `capybara, ~> 2.4.4`
 
 ## 0.4.0
 * Updates the `#first_` method so that when no argument is passed the
