@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.1
+* Loosens runtime dependency on Capybara version.
+
 ## 0.4.0
 * Updates the `#first_` method so that when no argument is passed the
   first occurrence of the element is found.
