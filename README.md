@@ -31,7 +31,7 @@ require 'capybara-extensions'
 ```
 
 ## Usage
-`CapybaraExtensions` extends Capybara's finders and matchers. Our goal is to cull many of the find statements from our tests and remove the verbose CSS and xpath locators that come along with them. Jonas Nicklas, who maintains Capybara, has [an excellent post](http://www.elabs.se/blog/51-simple-tricks-to-clean-up-your-capybara-tests) about augmenting Capybara with helper methods; this is what `CapybaraExtensions` aims to do.
+`CapybaraExtensions` extends Capybara's finders and matchers. Our goal is to cull many of the find statements from our tests and remove the verbose CSS and xpath locators that come along with them. Jonas Nicklas, who maintains Capybara, has [an excellent post](https://www.varvet.com/blog/simple-tricks-to-clean-up-your-capybara-tests/) about augmenting Capybara with helper methods; this is what `CapybaraExtensions` aims to do.
 
 You can read more about the library in [this blog post](http://reefpoints.dockyard.com/2013/11/11/capybara-extensions.html).
 
